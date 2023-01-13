@@ -1,1 +1,2 @@
-# sky 1
+# Sky: Social meida application named Sky
+
