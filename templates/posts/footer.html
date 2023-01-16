@@ -1,0 +1,47 @@
+{% load bootstrap4 %}
+
+{% comment %} <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<script src="{% static 'js/bootstrap.min.js' %}"></script> {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Footer</title>
+    </head>
+    <body>
+        <footer style="width: 100%; display: inline-block; background-color: #333; border-top: 20px solid black;" class="footer">
+            <div class="container">
+              <div id="ftr-wrap">
+                  <div  class="ftr-links">
+                      <ul style="width: 100%; list-style: none; display:center;">
+                         <li ><a style="margin:0 auto; float:left; width:27%; font-weight:bold; text-align:center; color:#ccc; text-decoration:none;" href="#">About Us</a></li>     
+                         <li ><a style="margin:0 auto; float:left; width:40%; font-weight:bold; text-align:center; color:#ccc; text-decoration:none;" href="#">Terms & Conditions</a></li>     
+                         <li ><a style="margin:0 auto; float:left; width:33%; font-weight:bold; text-align:center; color:#ccc; text-decoration:none;" href="#">Contact</a></li>     
+                      </ul>
+                  </div>
+                  <div style="float: none;padding: 3px 0;font-weight: normal;text-align:center; color:black;" class="copyright-sky">
+                      <p style="margin: 3rem auto;  display:center;" class="copyright">&copy; Copyright Preferred SKY 2023 &nbsp;-&nbsp; North York, ON CANADA</p>
+    
+                  </div>     
+              </div>
+            </div>
+          </footer>
+    </body>
+</html> 
+
+{% comment %} background : #333 text color : #ccc {% endcomment %}
+
+
+{% bootstrap_css %}
+
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+{% comment %} {# Display a form #} {% endcomment %}
+
+<form action="/url/to/submit/" method="post" class="form">
+    {% comment %} {% csrf_token %} {% endcomment %}
+

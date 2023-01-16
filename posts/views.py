@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def posts(request):
-    return HttpResponse("Hello main page!")
+    return render(request,"posts/footer.html")
 
 def post_detail(request):
     return HttpResponse("Hello post detail page!")
