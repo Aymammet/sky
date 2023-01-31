@@ -1,2 +1,2 @@
-# Sky: Social meida application named Sky
+# SKY: Social Media Application, named Sky
 
