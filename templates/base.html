@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <link rel="stylesheet" href="../static/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="../static/style.css">
+        <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'style.css' %}">    
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
         <title >SKY-Social Media</title>
     </head>
@@ -45,8 +46,8 @@
               </div>
             </div>
           </nav>
+          {% block content %}
+          {% endblock content %}
     </body>
-    <!-- {% block content %} -->
-    <!-- {% endblock content %} -->
 </html>
 <script src="../static/bootstrap/bootstrap.min.js"></script>

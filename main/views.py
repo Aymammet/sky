@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def login(request):
-    return HttpResponse("Hello login page!")
+     return render(request, 'login.html')
 
 def register(request):
-    return HttpResponse("Hello register page!")
+     return render(request, 'register.html')
