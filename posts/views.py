@@ -7,3 +7,6 @@ def posts(request):
 
 def post_detail(request):
     return HttpResponse("Hello post detail page!")
+
+def post_edit(request):
+    return render(request, 'post-edit.html')
