@@ -9,30 +9,32 @@
         <title >Post Edit</title>
     </head>
     <body>
-        <div class="container col-12 mt-5">
-            <div class="cardbox shadow-lg bg-white rounded-3">
-                <div class="cardbox-heading">
-                    <!-- START dropdown-->
-                    <div class="dropdown float-right">
-                        <div class="dropdown-menu dropdown-scale dropdown-menu-right" role="menu" style="position: absolute; transform: translate3d(-136px, 28px, 0px); top: 0px; left: 0px; will-change: transform;">
-                        </div>
-                    </div>
+        <!-- <"post edit"> -->
+        <div class="container-fluid col">
+            <form class="form-horizontal">
+                <div class="panel panel-default">
+                <div class="panel-body text-center mt-5">
+                    <img class="rounded-3" src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg" class="img-circle profile-avatar" alt="Post">
                 </div>
-                <!--/ cardbox-heading Post1 -->
-                <div class="cardbox-item p-1">
-                    <img class="img-fluid rounded-3 justify-content-center" src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg" alt="Image">
+            </form>
+        </div>
+        <div id="login" class="container col-md-5 col-lg-4 col-xl-3 col-sm-6 mx-auto mt-5">
+            <!-- Titlename input -->
+            <div class="form-outline mb-4 input-group flex-nowrap">
+                <span class="input-group-text fa-solid fa-file-signature fs-5" id="addon-wrapping"></span>
+                <input type="text" class="form-control" placeholder="Change Title Name" aria-label="Title" aria-describedby="addon-wrapping">
+            </div>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">File input</label>
+                <input class="form-control " type="file" id="formFile">
+            </div>
+            <!-- Save and Cancel buttons -->
+            <div class="container-fluid">
+                <div class="text-center">
+                    <button type="button" class="btn btn-secondary mb-4 col-5">Cancel</button>
+                    <button type="button" class="btn btn-primary mb-4 col-5">Save</button>
                 </div>
-                <!--/ cardbox-title -->
-                <div class="cardbox-base m-1">
-                    <p class="mb-0">Title Name</p>
-                    <div class="media-body mb-0 text-secondary-emphasis">
-                        <small><span><i class="icon ion-md-pin"></i> 25-Jan-2023</span></small>
-                        <small><span><i class="icon ion-md-time"></i> 10 hours ago</span></small>
-                    </div>
-                </div>
-                <hr class="mb-1">
             </div>
         </div>
     </body>
 </html>
-
