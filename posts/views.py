@@ -10,3 +10,6 @@ def post_detail(request):
 
 def post_edit(request):
     return render(request, 'post-edit.html')
+
+def post_create(request):
+    return render(request, 'post-create.html')
