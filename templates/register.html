@@ -1,4 +1,6 @@
-    <body>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
         <div id="login" class="container col-md-5 col-lg-4 col-xl-3 col-sm-6 mx-auto mt-5">
             <p class="text-center text-bg-primary mb-5 p-1 rounded-1">SKY-Social-Media</p>
             <!-- Username input -->
@@ -30,4 +32,4 @@
               <p>Already a member? <a href="">Sign in</a></p>
             </div>
         </div>
-    </body>   
+{% endblock content %}
