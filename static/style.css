@@ -1,14 +1,13 @@
-
 /* navbar */
 #navbarSupportedContent {
     justify-content: flex-end;
 }
 
-#footer {
+/* #footer {
     background-color: #333; 
     color:#ccc;
-}
+} */
 
-#navbar {
-    background-color: orange;
-}
+/* #search-input {
+    width: 50%;
+} */
