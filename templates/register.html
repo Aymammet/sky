@@ -9,7 +9,7 @@
                     {% csrf_token %}              
                     <div class="form-outline mb-4 input-group flex-nowrap">
                         <span class="input-group-text fa-regular fa-user fs-5" id="addon-wrapping"></span>
-                        <input value="{{ username }}" type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                     {% if form.username.errors %}
                         {% for error in form.username.errors %}
