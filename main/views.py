@@ -34,7 +34,5 @@ class CustomRegisterView(CreateView):
           else:
                if password != password2:
                     form.add_error("password", "Your password inputs doesn't match, please correct it!")
-               # if len(username) < 5 or len(username) > 20:
-               #      form.add_error("username", "Your username should be longer than 5 and less than 20 letters & symbols")
                return render(request, self.template_name, {'form': form})
                
