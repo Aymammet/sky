@@ -31,6 +31,11 @@
                         <span class="input-group-text fa-solid fa-key fs-5" id="addon-wrapping"></span>
                         <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
                     </div>
+                    {% if form.password.errors %}
+                        {% for error in form.password.errors %}
+                            <p style="color: red;">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
                     <!--Confirmation Password input -->
                     <div class="form-outline mb-4 input-group flex-nowrap">
                         <span class="input-group-text fa-solid fa-key fs-5" id="addon-wrapping"></span>

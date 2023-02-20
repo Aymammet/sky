@@ -35,4 +35,3 @@ class CustomRegisterView(CreateView):
                if password != password2:
                     form.add_error("password", "Your password inputs doesn't match, please correct it!")
                return render(request, self.template_name, {'form': form})
-               
