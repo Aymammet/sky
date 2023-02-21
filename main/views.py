@@ -38,3 +38,4 @@ class CustomRegisterView(CreateView):
                if form.is_valid():
                     form.save()
                     return redirect('posts')
+               return render(request, self.template_name, {'form': form})
