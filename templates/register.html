@@ -3,56 +3,50 @@
 {% block content %}
         <div id="login" class="container col-md-5 col-lg-4 col-xl-3 col-sm-6 mx-auto mt-5">
             <p class="text-center text-bg-primary mb-5 p-1 rounded-1">SKY-Social-Media</p>
-            <!-- Username input -->
             <div>
                 <form method="post">
-                    {% csrf_token %}              
-                    <div class="form-outline mb-4 input-group flex-nowrap">
+                    {% csrf_token %}
+                    <div class="form-outline mb-2 input-group flex-nowrap">
                         <span class="input-group-text fa-regular fa-user fs-5" id="addon-wrapping"></span>
-                        <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                        <input  value="{{form.username.value}}" type="text" name="username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                     {% if form.username.errors %}
                         {% for error in form.username.errors %}
-                            <p style="color: red;">{{ error }}</p>
+                            <p class="text-danger mb-2">{{ error }}</p>
                         {% endfor %}
                     {% endif %}
-                    <!-- Email input -->
-                    <div class="form-outline mb-4 input-group flex-nowrap">
+                    <div class="form-outline mb-2 input-group flex-nowrap">
                         <span class="input-group-text fa-regular fa-envelope fs-5" id="addon-wrapping"></span>
-                        <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping">
+                        <input value="{{form.email.value}}"  type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping">
                     </div>
                     {% if form.email.errors %}
                         {% for error in form.email.errors %}
-                            <p style="color: red;">{{ error }}</p>
+                            <p class="text-danger mb-2">{{ error }}</p>
                         {% endfor %}
                     {% endif %}
-                    <!-- Password input -->
-                    <div class="form-outline mb-4 input-group flex-nowrap">
+                    <div class="form-outline mb-2 input-group flex-nowrap">
                         <span class="input-group-text fa-solid fa-key fs-5" id="addon-wrapping"></span>
                         <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
                     </div>
                     {% if form.password.errors %}
                         {% for error in form.password.errors %}
-                            <p style="color: red;">{{ error }}</p>
+                            <p class="text-danger mb-2">{{ error }}</p>
                         {% endfor %}
                     {% endif %}
-                    <!--Confirmation Password input -->
-                    <div class="form-outline mb-4 input-group flex-nowrap">
+                    <div class="form-outline mb-2 input-group flex-nowrap">
                         <span class="input-group-text fa-solid fa-key fs-5" id="addon-wrapping"></span>
                         <input type="password" name="password2" class="form-control" placeholder="Confirm Password" aria-label="Password" aria-describedby="addon-wrapping">
                     </div>
                     {% if form.password.errors %}
                         {% for error in form.password.errors %}
-                            <p style="color: red;">{{ error }}</p>
+                            <p class="text-danger mb-2">{{ error }}</p>
                         {% endfor %}
                     {% endif %}
-                    <!-- Submit button Register -->
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary mb-4 col-4">Register</button>
                     </div>
-                    <!-- Sign in buttons -->
                     <div class="text-center">
-                    <p>Already a member? <a href="{% url 'login' %}">Sign in</a></p>
+                        <p>Already a member? <a class="text-primary" href="{% url 'login' %}">Sign in</a></p>
                     </div>    
                 </form>
         </div>
