@@ -12,9 +12,6 @@ from posts.views import posts
 def login(request):
      return render(request, 'login.html')
 
-def logout(request):
-     return render(request, 'login.html')
-
 
 class CustomRegisterView(CreateView):
      model = User
