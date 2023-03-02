@@ -4,10 +4,13 @@ from django.http import HttpResponse
 from django.views.generic import CreateView
 from django.core.exceptions import ValidationError
 from profiles.models import User
+from posts.models import Post
+from django.views.generic import ListView
 from django.urls import reverse_lazy
 from .forms import UserForm
 from posts.views import posts
 
+from posts.admin import MyPost
 
 def login(request):
      return render(request, 'login.html')
@@ -39,3 +42,15 @@ class CustomRegisterView(CreateView):
                     form.save()
                     return redirect('posts')
                return render(request, self.template_name, {'form': form})
+
+
+class PostListView(ListView):
+     model = Post
+     template_name = 'main.html'
+     form = MyPost
+
+     def get_queryset(self):
+          base_query = super().get_queryset()
+          data = base_query.order_by('created_date')
+          return data
+     
