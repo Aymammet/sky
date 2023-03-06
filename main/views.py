@@ -10,7 +10,6 @@ from django.urls import reverse_lazy
 from .forms import UserForm
 from posts.views import posts
 
-from posts.admin import MyPost
 
 def login(request):
      return render(request, 'login.html')
@@ -47,7 +46,6 @@ class CustomRegisterView(CreateView):
 class PostListView(ListView):
      model = Post
      template_name = 'main.html'
-     form = MyPost
 
      def get_queryset(self):
           base_query = super().get_queryset()
