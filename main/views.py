@@ -6,7 +6,6 @@ from django.core.exceptions import ValidationError
 from profiles.models import User
 from django.urls import reverse_lazy
 from .forms import UserForm
-from posts.views import posts
 
 
 def login(request):

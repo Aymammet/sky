@@ -9,7 +9,7 @@ class Post(models.Model):
     created_date = models.DateField(auto_now_add=True)
     created_time = models.TimeField(auto_now_add=True)
     total_likes = models.PositiveIntegerField(default=0)
-
+    total_dislikes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.title
+        return self.title  
