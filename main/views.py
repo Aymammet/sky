@@ -8,7 +8,6 @@ from django.urls import reverse_lazy
 from .forms import UserForm
 
 
-
 def login(request):
      return render(request, 'login.html')
 
@@ -39,7 +38,3 @@ class CustomRegisterView(CreateView):
                     form.save()
                     return redirect('posts')
                return render(request, self.template_name, {'form': form})
-
-
-
-     
