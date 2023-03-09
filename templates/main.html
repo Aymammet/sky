@@ -36,8 +36,8 @@
                         <a style="display: flex; flex-direction: column;" href="#">
                             <div>
                                 <i class="fa-regular fa-thumbs-up fa-lg"></i>
-                                <span class="mx-1"></span>
-                                <p>{{ post.total_likes }} Like</p>
+                                <span class="mx-1 cc-text">{{ post.total_likes }}</span>
+                                <p class="button-text">Like</p>
                             </div>
                         </a>
                     </div>
@@ -45,23 +45,22 @@
                         <a style="display: flex; flex-direction: column;" href="#">
                             <div>
                                 <i class="fa-regular fa-thumbs-down fa-lg"></i>
-                                <span class="mx-1"></span>
-                                <p>{{ post.total_dislikes }} Dislike</p>
+                                <span class="mx-1">{{ post.total_dislikes }}</span>
+                                <p class="button-text">Dislike</p>
                             </div>
                         </a>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 test">
                         <a style="display: flex; flex-direction: column;" href="#">
                             <div>
-                                <i class="fa-regular fa-comment fa-lg"></i>
+                                <i class="fa-regular fa-comment fa-lg "></i>
                                 <span class="mx-1">0</span>
-                                <p>Comments</p>
-                                
+                                <p class="button-text">Comments</p>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="p-1 mt-1 mb-1 ">
+                <div class="p-1 mt-1 mb-1">
                     <hr class="border-primary border-2 opacity-100">
                 </div>
             </div>
