@@ -4,7 +4,7 @@ from profiles.models import User
 from .models import Post
 from django.views.generic import ListView, CreateView
 from django.urls import reverse_lazy
-from .form import PostForm
+from .forms import PostForm
 
 
 # Create your views here.
