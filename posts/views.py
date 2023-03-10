@@ -38,18 +38,6 @@ class PostCreateview(CreateView):
         myobj.owner = self.request.user
         return super().form_valid(form)
     
-    
-    
-    # def post(self, request, *args, **kwargs):
-    #     form = self.get_form()
-    #     if form.is_valid():
-    #         return self.form_valid(form)
-    #     else:
-    #         return self.form_invalid(form)
-
-
-
-
 
 def post_detail(request):
     return HttpResponse("Hello post detail page!")
