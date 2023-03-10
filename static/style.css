@@ -1,5 +1,3 @@
-
-
 body {
     font-family: 'Montserrat', sans-serif;
 }
@@ -22,6 +20,12 @@ a {
     background-color: rgb(98, 98, 98);
     border-radius: 5px;
   }
+
+#post-image {
+    width:100%;
+    height:100%; 
+    border-radius: 5px;
+}
 
 @media only screen and (max-width: 400px) {
     .button-text {
