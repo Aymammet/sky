@@ -13,7 +13,7 @@
                         </div>
                         <div id="title" class="col mt-2">
                             <div class="mb-4">
-                                <a href="{% url 'post_edit' form.image.pk %}"></a>
+                                <a href="{% url 'posts' post.pk %}"></a>
                                 <input name="image" src="{{form.image.value}}" class="form-control" type="file" id="imagefile">
                             </div>
                             <div class="form-outline mb-3 input-group flex-nowrap">

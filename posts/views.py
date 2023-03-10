@@ -28,7 +28,7 @@ class PostEditView(CreateView):
 
     def get_object(self, request):
         id = self.kwargs.get('pk')
-        return Post.objects.get(pk=id)
+        return Post.posts.get(pk=id)
     
           
     def form_valid(self, form):
@@ -37,8 +37,8 @@ class PostEditView(CreateView):
         response = super().form_valid(form)
 
         if form.cleaned_data['image']:
-            self.object.image.name = form.cleaned_data['data'].name
-            self.object.save()
+            self.post.image.name = form.cleaned_data['data'].name
+            self.post.save()
 
     
 
