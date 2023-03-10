@@ -1,54 +1,49 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}        
-        <!-- <"post edit"> -->
-        <div class="container p-4 text-center my-5">
-            <div class="d-flex my-5 row align-items-center justify-content-center">
-                <form class="form-horizontal col-md-6" method="post" enctype="multipart/form-data">
-                    <div class="posts px-2 align-self-center mb-4"  style="width: 600px; border-radius: 5px; padding: 5px; background-color: rgb(250, 250, 250);">
-                        <div class=" mb-2" >
-                            {% csrf_token %}
-                            <div class="col-auto mt-1`">
-                                <div class="col-12 px-2">
-                                    <div class="panel-body text-center mt-5">
-                                        <img id="postimage" style="width:100%;height:100%; border-radius: 5px;" class="rounded-3 mb-1" name="image" src="{{post.image.url}}" alt="{{ post.title }}">
-                                    </div>
-                                    <div class="p-1 mt-1 mb-1 ">
-                                        <hr class="border-primary border-2 opacity-100">
-                                    </div>
-                                    <!-- <hr class="mb-0"> -->
-                                    <div id="title" class="container col-md-10 col-lg-10 col-xl-9 col-sm-9 mx-auto mt-5">
-                                        <!-- Titlename input -->
-                                        <div class="form-outline mb-3 input-group flex-nowrap">
-                                            <span class="input-group-text fa-solid fa-file-signature fs-5" id="addon-wrapping">{{ errror }}</span>
-                                            <input type="text" name="title" class="form-control" placeholder="Create Title Name" aria-label="Title" aria-describedby="addon-wrapping">
-                                        </div>
-                                        <div class="mb-4">
-                                            <label for="formFile" class="form-label">File input</label>
-                                            <input name="image" src="{{form.image.value}}" class="form-control" type="file" id="imagefile">
-                                        </div>
-                                        <!-- Save and Cancel buttons -->
-                                        <div class=" container-fluid">
-                                            <div class="text-center">
-                                                <button type="button" class="btn btn-secondary mb-4 col-5">Cancel</button>
-                                                <button type="submit" class="btn btn-primary mb-4 col-5">Create</button>
-                                            </div>
-                                        </div>
-                                    </div>
+<div class="container p-4 text-center my-5">
+    <div class="d-flex my-5 row align-items-center justify-content-center">
+        <form class="posts col-md-8 col-sm-10" method="post" enctype="multipart/form-data">
+            <div class=" mb-2" >
+                {% csrf_token %}
+                <div class="col-auto mt-1`">
+                    <div class="col-12 px-2">
+                        <div class="panel-body text-center mt-2">
+                            <img id="post-image" class="rounded-3 mb-1" name="image">
+                        </div>`
+                        <div id="title" class="col mt-2">
+                            <div class="mb-4">
+                                <input name="image" src="{{form.image.value}}" class="form-control" type="file" id="imagefile">
+                            </div>
+                            <div class="form-outline mb-3 input-group flex-nowrap">
+                                <input type="text" name="title" class="form-control" placeholder="Your post" aria-label="Title" aria-describedby="addon-wrapping">
+                            </div>
+                            <div class=" container-fluid">
+                                <div class="text-center">
+                                    <a href="{% url 'posts' %}">
+                                        <button type="button" class="btn btn-secondary mb-4 col-5">
+                                            Cancel
+                                        </button>
+                                    </a>
+                                    <button type="submit" class="btn btn-primary mb-4 col-5">
+                                        Create
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
-        </div>
-        <script>
-            document.addEventListener("DOMContentLoaded",() => {
-                document.getElementById('imagefile').addEventListener('change', (event) => {
-                    image = document.getElementById('imagefile')
-                    var src = URL.createObjectURL(event.target.files[0])
-                    document.getElementById('postimage').src = src
-                })
-            })
-        </script>
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded",() => {
+        document.getElementById('imagefile').addEventListener('change', (event) => {
+            image = document.getElementById('imagefile')
+            var src = URL.createObjectURL(event.target.files[0])
+            document.getElementById('post-image').src = src
+        })
+    })
+</script>
 {% endblock content %}
