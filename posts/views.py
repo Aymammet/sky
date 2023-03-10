@@ -26,16 +26,20 @@ class PostEditView(CreateView):
     success_url = reverse_lazy('posts')
     form = PostForm
 
-    def get(self, request):
-        if request.user.is_authenticated:
-            return render(request, self.template_name)
-        else:
-            return render(request, 'login.html')
-        
+    def get_object(self, request):
+        id = self.kwargs.get('pk')
+        return Post.objects.get(pk=id)
+    
+          
     def form_valid(self, form):
         myobj = form.save(commit=False)
         myobj.owner = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+
+        if form.cleaned_data['image']:
+            self.object.image.name = form.cleaned_data['data'].name
+            self.object.save()
+
     
 
 
