@@ -35,16 +35,9 @@ class PostEditView(UpdateView):
         mypost = form.save(commit=False)
         mypost.owner = self.request.user
         response = super().form_valid(form)
-
-        if form.cleaned_data['image']:
-            mypost.title = form.cleaned_data['title']
-            mypost.save()
         return response
 
     
-
-
-
 class PostCreateview(CreateView):
     model = Post
     template_name = 'post-create.html'
