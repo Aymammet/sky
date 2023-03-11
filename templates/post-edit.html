@@ -9,15 +9,18 @@
                 <div class="col-auto mt-1`">
                     <div class="col-12 px-2">
                         <div class="panel-body text-center mt-2">
-                            <img id="post-image" class="rounded-3 mb-1" name="image">
-                                <img id="post-image" class="rounded-3 mb-1" src="{{ post.image.url }}" alt="{{ post.title }}">
+                            <img id="post-image" class="rounded-3 mb-1" src="
+                            {% if post.image %}
+                                {{ post.image.url }}
+                            {% endif %}
+                            ">
                         </div>
                         <div id="title" class="col mt-2">
                             <div class="mb-4">
                                 <input name="image" src="{{post.image.value}}" class="form-control" type="file" id="imagefile">
                             </div>
                             <div class="form-outline mb-3 input-group flex-nowrap">
-                                <input type="text" src="{{post.title.url}}" name="title" class="form-control" placeholder="Your post" aria-label="Title" aria-describedby="addon-wrapping">
+                                <input type="text" value="{{post.title}}" name="title" class="form-control" placeholder="Your post" aria-label="Title" aria-describedby="addon-wrapping">
                             </div>
                             <div class=" container-fluid">
                                 <div class="text-center">

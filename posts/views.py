@@ -36,7 +36,7 @@ class PostEditView(UpdateView):
         mypost.owner = self.request.user
         response = super().form_valid(form)
         return response
-
+    
     
 class PostCreateview(CreateView):
     model = Post
