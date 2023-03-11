@@ -12,6 +12,7 @@
                     </div>
                     <div class="col-11 px-2">
                         <div class="col text-start">
+                            <a href="{% url 'post_edit' post.pk %}">edit</a>
                             <b>{{ post.owner.first_name }} {{ post.owner.last_name }}</b>
                         </div>
                         <div class="col text-start mt-1 mb-1" style="color: rgb(110, 108, 108); font-weight: bold;">

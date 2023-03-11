@@ -10,14 +10,15 @@
                     <div class="col-12 px-2">
                         <div class="panel-body text-center mt-2">
                             <img id="post-image" class="rounded-3 mb-1" name="image">
+                                <img id="post-image" class="rounded-3 mb-1" src="{{ post.image.url }}" alt="{{ post.title }}">
                         </div>
                         <div id="title" class="col mt-2">
                             <div class="mb-4">
-                                <a href="{% url 'posts' post.pk %}"></a>
-                                <input name="image" src="{{form.image.value}}" class="form-control" type="file" id="imagefile">
+                                <a href=""></a>
+                                <input name="image" src="{{post.image.value}}" class="form-control" type="file" id="imagefile">
                             </div>
                             <div class="form-outline mb-3 input-group flex-nowrap">
-                                <input type="text" name="title" class="form-control" placeholder="Your post" aria-label="Title" aria-describedby="addon-wrapping">
+                                <input type="text" src="{{post.title.url}}" name="title" class="form-control" placeholder="Your post" aria-label="Title" aria-describedby="addon-wrapping">
                             </div>
                             <div class=" container-fluid">
                                 <div class="text-center">
