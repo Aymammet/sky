@@ -18,6 +18,13 @@
                             <div class="form-outline mb-3 input-group flex-nowrap">
                                 <input type="text" name="title" class="form-control" placeholder="Your post" aria-label="Title" aria-describedby="addon-wrapping">
                             </div>
+                            <div class="error-text">
+                                {% if form.title.errors %}
+                                    {% for error in form.title.errors %}
+                                        <p>{{ error }}</p>    
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
                             <div class=" container-fluid">
                                 <div class="text-center">
                                     <a href="{% url 'posts' %}">
