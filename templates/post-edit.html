@@ -1,37 +1,60 @@
 {% extends "base.html" %}
 {% load static %}
-{% block content %}
-        <!-- <"post edit"> -->
-        <div class="container-fluid col">
-            <form class="form-horizontal">
-                <div class="panel-body text-center mt-5">
-                    <img class="rounded-3 mb-1" src="https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg" alt="Post">
-                    <p class="mb-0">Title Name</p>
-                    <div class="media-body mb-0 text-secondary-emphasis">
-                        <small><span><i class="icon ion-md-pin"></i> 25-Jan-2023</span></small>
-                        <small><span><i class="icon ion-md-time"></i> 10 hours ago</span></small>
+{% block content %}        
+<div class="container p-4 text-center my-5">
+    <div class="d-flex my-5 row align-items-center justify-content-center">
+        <form class="posts col-md-8 col-sm-10" method="post" enctype="multipart/form-data">
+            <div class=" mb-2" >
+                {% csrf_token %}
+                <div class="col-auto mt-1`">
+                    <div class="col-12 px-2">
+                        <div class="panel-body text-center mt-2">
+                            <img id="post-image" class="rounded-3 mb-1" src="
+                            {% if post.image %}
+                                {{ post.image.url }}
+                            {% endif %}
+                            ">
+                        </div>
+                        <div id="title" class="col mt-2">
+                            <div class="mb-4">
+                                <input name="image" src="{{post.image.value}}" class="form-control" type="file" id="imagefile">
+                            </div>
+                            <div class="form-outline mb-3 input-group flex-nowrap">
+                                <input type="text" value="{{post.title}}" name="title" class="form-control" placeholder="Your post" aria-label="Title" aria-describedby="addon-wrapping">
+                            </div>
+                            <div class="error-text">
+                                {% if form.title.errors %}
+                                    {% for error in form.title.errors %}
+                                        <p>{{ error }}</p>    
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <div class=" container-fluid">
+                                <div class="text-center">
+                                    <a href="{% url 'posts' %}">
+                                        <button type="button" class="btn btn-secondary mb-4 col-5">
+                                            Cancel
+                                        </button>
+                                    </a>
+                                    <button type="submit" class="btn btn-primary mb-4 col-5">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <hr class="mb-0">
-            </form>
-        </div>
-        <div id="title" class="container col-md-5 col-lg-4 col-xl-3 col-sm-6 mx-auto mt-5">
-            <!-- Titlename input -->
-            <div class="form-outline mb-3 input-group flex-nowrap">
-                <span class="input-group-text fa-solid fa-file-signature fs-5" id="addon-wrapping"></span>
-                <input type="text" class="form-control" placeholder="Change Title Name" aria-label="Title" aria-describedby="addon-wrapping">
             </div>
-            <div class="mb-4">
-                <label for="formFile" class="form-label">File input</label>
-                <input class="form-control " type="file" id="formFile">
-            </div>
-            <!-- Save and Cancel buttons -->
-            <div class="container-fluid">
-                <div class="text-center">
-                    <button type="button" class="btn btn-secondary mb-4 col-5">Cancel</button>
-                    <button type="button" class="btn btn-primary mb-4 col-5">Save</button>
-                </div>
-            </div>
-        </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded",() => {
+        document.getElementById('imagefile').addEventListener('change', (event) => {
+            image = document.getElementById('imagefile')
+            var src = URL.createObjectURL(event.target.files[0])
+            document.getElementById('post-image').src = src
+        })
+    })
+</script>
 {% endblock content %}
-

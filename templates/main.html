@@ -1,24 +1,33 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    
+
     <div class="container p-4 text-center my-5">
         <div class="my-5 flex-column row align-items-center justify-content-center">
             {% for post in posts %}
             <div class="posts col-md-8 px-2 align-self-center mb-4"  style="width: 500px; border-radius: 5px; padding: 5px; background-color: rgb(250, 250, 250);">
                 <div class=" d-flex mb-2" >
                     <div class="col-auto mt-1`">
-                        <img style="width:52px; height: 52px" class="avatar rounded-circle text-bg-secondary" src="https://cdn.pixabay.com/photo/2014/11/13/06/12/boy-529067__340.jpg" alt="avatar">
+                        <img style="width:52px; height: 52px" class="avatar rounded-circle text-bg-secondary " src="https://cdn.pixabay.com/photo/2014/11/13/06/12/boy-529067__340.jpg" alt="avatar">
                     </div>
                     <div class="col-11 px-2">
-                        <div class="col text-start">
-                            <b>{{ post.owner.first_name }} {{ post.owner.last_name }}</b>
-                        </div>
-                        <div class="col text-start mt-1 mb-1" style="color: rgb(110, 108, 108); font-weight: bold;">
-                            @{{ post.owner.username }}
-                        </div>
-                        <div class="col text-start" style="color: rgb(171, 171, 171)">
-                            {{ post.created_date }} - {{ post.created_time }}
+                        <div>
+                            <div class="text-start row align-items-start">
+                                <div class="col">
+                                    <b>{{ post.owner.first_name }} {{ post.owner.last_name }}</b>
+                                </div>
+                                <div class="col">
+                                    {% if user == post.owner %}
+                                    <a class="d-flex fa-solid fa-ellipsis justify-content-end fs-5 mt-1 mx-2" href="{% url 'post_edit' post.pk %}"></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col text-start mt-1 mb-1" style="color: rgb(110, 108, 108); font-weight: bold;">
+                                @{{ post.owner.username }}
+                            </div>
+                            <div class="col text-start date-time" style="color: rgb(171, 171, 171)">
+                                {{ post.created_date }} - {{ post.created_time }}
+                            </div>
                         </div>
                     </div>
                 </div>
