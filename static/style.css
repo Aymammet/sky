@@ -33,6 +33,18 @@ a {
     }
 }
 
+@media only screen and (max-width: 370px) {
+    .name-text {
+        display: none;
+    }
+    
+}
+
+
 .error-text {
     color: red;
+}
+
+.edit-button:hover {
+    color: #0d6efd;
 }
