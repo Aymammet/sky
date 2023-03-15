@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse , HttpResponseRedirect, HttpResponseForbidden
 from profiles.models import User
 from .models import Post
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import PostForm
 
@@ -29,15 +29,26 @@ class PostEditView(UpdateView):
     def get_object(self, queryset=None):
         id = self.kwargs.get('pk')
         return Post.objects.get(id=id)
-    
-          
+ 
+         
     def form_valid(self, form):
         mypost = form.save(commit=False)
         mypost.owner = self.request.user
         response = super().form_valid(form)
         return response
-    
-    
+
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'post-edit.html'
+    success_url = reverse_lazy('posts')
+
+    def get_object(self, queryset=None):
+        id = self.kwargs.get('pk')
+        return Post.objects.get(id=id)
+
+
+        
 class PostCreateview(CreateView):
     model = Post
     template_name = 'post-create.html'

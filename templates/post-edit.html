@@ -4,8 +4,11 @@
 <div class="container p-4 text-center my-5">
     <div class="d-flex my-5 row align-items-center justify-content-center">
         <form class="posts col-md-8 col-sm-10" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="mt-2 d-flex flex-row-reverse delete-button">
-                <a class="fa-solid fa-trash fa-2x delete-button" style="color: #cb1a1a" href="{% url 'posts' %}"></a>
+                <a href="{% url 'post_delete' post.id %}" class="fa-solid fa-trash fa-2x">
+                    <button class="fa-solid fa-trash fa-1x" type="submit">{{ delete }} Delete</button>
+                </a>
             </div>
             <div class=" mb-2" >
                 {% csrf_token %}

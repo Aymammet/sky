@@ -45,6 +45,12 @@ a {
     color: red;
 }
 
+.delete-button a:hover {
+    color: rgba(190, 5, 5, 0.822);
+    border-radius: 5px; /* add rounded corners */
+    cursor: pointer;
+}
+
 .edit-button:hover {
     color: #0d6efd;
 }
