@@ -63,13 +63,3 @@ class PostCreateview(CreateView):
         myobj.owner = self.request.user
         return super().form_valid(form)
     
-
-def post_detail(request):
-    return HttpResponse("Hello post detail page!")
-
-def post_edit(request):
-    return render(request, 'post-edit.html')
-
-
-
-
