@@ -11,6 +11,13 @@
             <div class=" mb-2" >
                 <div class="col-auto mt-1`">
                     <div class="col-12 px-2">
+                        <div class="panel-body text-center mt-2">
+                            <img id="post-image" class="rounded-3 mb-1" src="
+                            {% if post.image %}
+                                {{ post.image.url }}
+                            {% endif %}
+                            ">
+                        </div>
                         <div id="title" class="col mt-2">
                             <div class="mb-4">
                                 <input name="image" src="{{post.image.value}}" class="form-control" type="file" id="imagefile">
