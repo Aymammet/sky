@@ -12,13 +12,13 @@
                     </div>
                     <div class="col-11 px-2">
                         <div>
-                            <div class="text-start row align-items-start">
+                            <div class="text-start row align-items-start name-text">
                                 <div class="col">
                                     <b>{{ post.owner.first_name }} {{ post.owner.last_name }}</b>
                                 </div>
-                                <div class="col">
+                                <div class="col mx-1">
                                     {% if user == post.owner %}
-                                    <a class="d-flex fa-solid fa-ellipsis justify-content-end fs-5 mt-1 mx-2" href="{% url 'post_edit' post.pk %}"></a>
+                                    <a class="d-flex fa-regular fa-pen-to-square justify-content-end fs-5 mt-1 mx-1 edit-button" href="{% url 'post_edit' post.pk %}"></a>
                                     {% endif %}
                                 </div>
                             </div>

@@ -33,6 +33,40 @@ a {
     }
 }
 
+@media only screen and (max-width: 370px) {
+    .name-text {
+        display: none;
+    }
+    
+}
+
+
 .error-text {
     color: red;
+}
+
+.delete-button a:hover {
+    color: rgba(190, 5, 5, 0.822);
+    border-radius: 5px; /* add rounded corners */
+    cursor: pointer;
+}
+
+.button-delete:hover {
+    background-color: #dc3545;
+    border-radius: 5px; /* add rounded corners */
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    color: #0d6efd;
+}
+
+.card-body {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.delete-text {
+    box-shadow: 0 4px 6px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    font-size: large;
 }
