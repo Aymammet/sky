@@ -6,21 +6,11 @@
         <form class="posts col-md-8 col-sm-10" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mt-2 d-flex flex-row-reverse delete-button">
-                <a href="{% url 'post_delete' post.id %}" class="fa-solid fa-trash fa-2x">
-                    <button class="fa-solid fa-trash fa-1x" type="submit">{{ delete }} Delete</button>
-                </a>
+                <a href="{% url 'post_delete' post.id %}" class="fa-solid fa-trash fa-2x"></a>
             </div>
             <div class=" mb-2" >
-                {% csrf_token %}
                 <div class="col-auto mt-1`">
                     <div class="col-12 px-2">
-                        <div class="panel-body text-center mt-2">
-                            <img id="post-image" class="rounded-3 mb-1" src="
-                            {% if post.image %}
-                                {{ post.image.url }}
-                            {% endif %}
-                            ">
-                        </div>
                         <div id="title" class="col mt-2">
                             <div class="mb-4">
                                 <input name="image" src="{{post.image.value}}" class="form-control" type="file" id="imagefile">

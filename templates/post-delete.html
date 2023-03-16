@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}        
+
+<div class="card-body">
+    <form method="POST">
+        <div class="container-fluid">
+            {% csrf_token %}
+            <div class="text-center">
+                <p>Are you sure you want to delete the current Post ?</p>
+                {% if user == post.owner %}
+                <a class="btn btn-primary mb-4 col-auto button mx-1" href="{% url 'post_edit' post.pk %}">Cancel</a>
+                {% endif %}
+                <input class="btn btn-primary mb-4 col-auto button-delete mx-1" type="submit" value="Delete"/>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

@@ -40,13 +40,8 @@ class PostEditView(UpdateView):
 
 class PostDeleteView(DeleteView):
     model = Post
-    template_name = 'post-edit.html'
+    template_name = 'post-delete.html'
     success_url = reverse_lazy('posts')
-
-    def get_object(self, queryset=None):
-        id = self.kwargs.get('pk')
-        return Post.objects.get(id=id)
-
 
         
 class PostCreateview(CreateView):

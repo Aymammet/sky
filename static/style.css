@@ -51,6 +51,16 @@ a {
     cursor: pointer;
 }
 
+.button-delete:hover {
+    background-color: #dc3545;
+    border-radius: 5px; /* add rounded corners */
+    cursor: pointer;
+}
+
 .edit-button:hover {
     color: #0d6efd;
+}
+
+.card-body {
+    padding: 20px;
 }
