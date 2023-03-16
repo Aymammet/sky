@@ -2,6 +2,9 @@
 {% load static %}
 {% block content %}
         <div id="login" class="container col-md-5 col-lg-4 col-xl-3 col-sm-6 mx-auto mt-5">
+            <div class="text-center ">
+                <img  class="img-fluid rounded-4 w-75 mb-4 logo-icon" src="{% static 'images/sky_logo_main.png' %}" alt="Skylogo-main">
+            </div>  
             <p class="text-center text-bg-primary mb-5 p-1 rounded-1">SKY-Social-Media</p>
             <div>
                 <form method="post">
@@ -49,5 +52,6 @@
                         <p>Already a member? <a class="text-primary" href="{% url 'login' %}">Sign in</a></p>
                     </div>    
                 </form>
+            </div>    
         </div>
 {% endblock content %}

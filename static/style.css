@@ -28,7 +28,7 @@ a {
 }
 
 @media only screen and (max-width: 400px) {
-    .button-text, .date-time {
+    .button-text, .date-time, .logo-icon {
         display: none;
     }
 }
