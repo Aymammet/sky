@@ -10,7 +10,7 @@
             <div class="my-1 d-flex justify-content-center">
                 <p class="my-0 font-weight-bold">
                     <b>
-                        Aymammet Annamyradov
+                        {{ user.first_name }} {{ user.last_name }}
                     </b>
                 </p>
             </div>
@@ -31,75 +31,75 @@
                 </div>
                 <div class="d-flex align-items-center" style="height: 75px ;border-bottom: 1px solid gray;">
                     <i class="mb-0 mx-3 fa-regular fa-user"></i>
-                    <div>@anar</div>
+                    <div>@{{ user.username }}</div>
                 </div>
                 <div class="d-flex align-items-center" style="height: 75px ;border-bottom: 1px solid gray;">
                     <i class="mb-0 mx-3 fa-solid fa-venus-mars"></i>
-                    <div>Male</div>
+                    <div>{{ user.gender }}</div>
                 </div>
                 <div class="d-flex align-items-center" style="height: 75px ;border-bottom: 1px solid gray;">
                     <i class="mb-0 mx-3 fa-solid fa-cake-candles"></i>
-                    <div>14 March, 1989</div>
+                    <div>{{ user.birth_date }}</div>
                 </div>
                 <div class="d-flex align-items-center" style="height: 75px ;border-bottom: 1px solid gray;">
                     <i class="mb-0 mx-3 fa-regular fa-address-card"></i>
-                    <div>bla vla asd sdanasdlkasd asdnasd asdlaksdnasd asdasdnas </div>
+                    <div>{{ user.bio }} </div>
                 </div>
             </div>
         </div>
-        <div style="height: 750px; overflow-y: scroll;" class="px-0 col-md-7 col-lg-7 col-sm-12 d-flex flex-column align-items-center">
-            <div class="posts my-4 col-9"  style="border-radius: 5px; padding: 5px; background-color: rgb(250, 250, 250);">
-                <div class="d-flex mb-2" >
-                    <div class="col-11 px-2">
-                        <div class="col text-start" style="color: rgb(171, 171, 171)">
-                            2 January 2023 - 17:03
+        {% if posts %}
+        {% for post in posts %}
+            <div style="height: 750px; overflow-y: scroll;" class="px-0 col-md-7 col-lg-7 col-sm-12 d-flex flex-column align-items-center">
+                <div class="posts my-4 col-9"  style="border-radius: 5px; padding: 5px; background-color: rgb(250, 250, 250);">
+                    <div class="d-flex mb-2" >
+                        <div class="col-11 px-2">
+                            <div class="col text-start" style="color: rgb(171, 171, 171)">
+                                {{ post.created_date }} - {{ post.created_time }}
+                            </div>
+                        </div>
+                    </div>
+                    {% if post.image %}
+                    <div class="col d-flex justify-content-center">
+                        <img src="{{ post.image.url }}" style="width:100%;height:100%; border-radius: 5px;" alt="image of aykos">
+                    </div>
+                    {% endif %}
+                    <p class="text-start my-2">
+                        {{ post.title }}
+                    </p>
+                    <hr>
+                    <div class="interactions" style="display: flex; justify-content: space-around;">
+                        <div class="col-3">
+                            <a style="display: flex; flex-direction: column;" href="#">
+                                <div>
+                                    <i class="fa-regular fa-thumbs-up fa-lg"></i>
+                                    <span class="mx-1">{{ post.total_likes }}</span>
+                                    <p class="button-text">Like</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a style="display: flex; flex-direction: column;" href="#">
+                                <div>
+                                    <i class="fa-regular fa-thumbs-down fa-lg"></i>
+                                    <span class="mx-1">{{ post.total_dislikes }}</span>
+                                    <p class="button-text">Dislike</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3">
+                            <a style="display: flex; flex-direction: column;" href="#">
+                                <div>
+                                    <i class="fa-regular fa-comment fa-lg "></i>
+                                    <span class="mx-1">0</span>
+                                    <p class="button-text">Comments</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="col d-flex justify-content-center">
-                    <img src="https://cdn.pixabay.com/photo/2018/06/17/20/35/chain-3481377_960_720.jpg" style="width:100%;height:100%; border-radius: 5px;" alt="image of aykos">
-                </div>
-                <p class="text-start my-2">
-                    Photo taken by me
-                </p>
-                <hr>
-                <div class="interactions" style="display: flex; justify-content: space-around;">
-                    <div class="col-3">
-                        <a style="display: flex; flex-direction: column;" href="#">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <i class="fa-regular fa-thumbs-up fa-lg"></i>
-                                <span class="mx-1">15</span>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                Like
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-3">
-                        <a style="display: flex; flex-direction: column;" href="#">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <i class="fa-regular fa-thumbs-down fa-lg"></i>
-                                <span class="mx-1">15</span>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                Dislike
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-3">
-                        <a style="display: flex; flex-direction: column;" href="#">
-                            <div class="d-flex justify-content-center align-items-center">
-                                <i class="fa-regular fa-comment fa-lg"></i>
-                                <span class="mx-1">15</span>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                Comment
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
-        </div>
+        {% endfor %}
+        {% endif %}
     </div>
 </div>
 {% endblock content %}
