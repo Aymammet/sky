@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView
 from .models import User
 from posts.models import Post
 
@@ -15,5 +15,15 @@ class UserDetailView(DetailView):
         context['posts'] = Post.objects.filter(owner=self.object)
         return context
 
-def profile_edit(request):
-    return HttpResponse("Hello profile_edit page!")
+
+class UserUpdateView(UpdateView):
+    model = User
+    fields = ['username','first_name', 'last_name', 'profession','bio', 'email']
+    template_name = 'profile-edit.html'
+
+    def get(self, request):
+        if request.user.is_authenticated:
+            return render(request, self.template_name)
+        else:
+            return render(request, 'login.html')
+
