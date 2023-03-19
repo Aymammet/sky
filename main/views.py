@@ -20,12 +20,10 @@ class CustomLoginView(LoginView):
           try:
                user = User.objects.get(username=username)
                form.add_error("password", "The password is wrong")
-               context = {'form': form}
-               return render(self.request, self.template_name, context)
           except User.DoesNotExist:
                form.add_error("username", "This user does not exist")
-               context = {'form': form}
-               return render(self.request, self.template_name, context)
+          context = {'form': form}
+          return render(self.request, self.template_name, context)
 
 
 class CustomRegisterView(CreateView):
