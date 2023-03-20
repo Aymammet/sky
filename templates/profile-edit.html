@@ -9,10 +9,14 @@
                     <div class="card-header">Profile Picture</div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-2" src="{{ post.owner.user.avatar_pic.url }}" width="220cm" alt="profile_image">
+                        <img class="img-account-profile rounded-circle mb-2" src="{{ user.avatar_pic.url }}" width="220cm" alt="profile_image">
                         <!-- Profile picture help block-->
                         <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                         <!-- Profile picture upload button-->
+                        <div class="mb-3">
+                            <label for="formFileSm" class="form-label"></label>
+                            <input class="form-control form-control-sm" id="formFileSm" type="file" alt="profile_image">
+                        </div>
                         <button class="btn btn-primary" type="button">Upload new image</button>
                     </div>
                 </div>
@@ -70,7 +74,12 @@
                                 </div>
                             </div>
                             <!-- Save changes button-->
-                            <button class="btn btn-primary" type="button">Save changes</button>
+                            <div class="">
+                                <a href="{% url 'profile' user.id %}" class="btn btn-primary mx-1">
+                                    Profile
+                                </a>
+                                <button class="btn btn-primary" type="button">Save changes</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -79,8 +88,8 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded",() => {
-            document.getElementById('imagefile').addEventListener('change', (event) => {
-                image = document.getElementById('imagefile')
+            document.getElementById('profile_image').addEventListener('change', (event) => {
+                image = document.getElementById('profile_image')
                 var src = URL.createObjectURL(event.target.files[0])
                 document.getElementById('profile-image').src = src
             })
