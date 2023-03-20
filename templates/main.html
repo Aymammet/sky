@@ -6,12 +6,15 @@
         {% if request.user.is_authenticated %}
         <div class="my-5 flex-column row align-items-center justify-content-center">
             {% for post in posts %}
+            
             <div class="posts col-md-8 px-2 align-self-center mb-4"  style="width: 500px; border-radius: 5px; padding: 5px; background-color: rgb(250, 250, 250);">
                 <div class=" d-flex mb-2" >
                     <div class="col-auto mt-1`">
                        <a href="{% url 'profile' post.owner.id %}">
-                            <img style="width:52px; height: 52px" class="avatar rounded-circle text-bg-secondary " src="https://cdn.pixabay.com/photo/2014/11/13/06/12/boy-529067__340.jpg" alt="avatar">
-                       </a> 
+                        {% if user == post.owner %}
+                            <img style="width:52px; height: 52px" class="avatar rounded-circle text-bg-secondary " src="{{ post.owner.user.avatar_pic.url }}" alt="Avatar">
+                        {% endif %}
+                        </a> 
                     </div>
                     <div class="col-11 px-2">
                         <div>

@@ -18,7 +18,7 @@ class UserDetailView(DetailView):
 
 class UserUpdateView(UpdateView):
     model = User
-    fields = ['username','first_name', 'last_name', 'profession','bio', 'email']
+    fields = ['username','first_name', 'last_name', 'profession','bio', 'email', 'avatar_pic']
     template_name = 'profile-edit.html'
         
     def get_object(self, queryset=None):
@@ -31,5 +31,7 @@ class UserUpdateView(UpdateView):
         myprofile.owner = self.request.user
         response = super().form_valid(fields)
         return response
+    
+
 
 
