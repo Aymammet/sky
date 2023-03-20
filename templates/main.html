@@ -13,15 +13,15 @@
                             <img style="width:52px; height: 52px" class="avatar rounded-circle text-bg-secondary " src="https://cdn.pixabay.com/photo/2014/11/13/06/12/boy-529067__340.jpg" alt="avatar">
                        </a> 
                     </div>
-                    <div class="col-11 px-2">
+                    <div class="col-11 px-1">
                         <div>
-                            <div class="text-start row align-items-start name-text">
+                            <div class="col-11 text-start row align-items-start name-text flex-nowrap">
                                 <a href="{% url 'profile' post.owner.id %}">
-                                    <div class="col">
-                                        <b>{{ post.owner.first_name }} {{ post.owner.last_name }}</b>
-                                    </div>
+                                <div class="col">
+                                    <b>{{ post.owner.first_name }} {{ post.owner.last_name }}</b>
+                                </div>
                                 </a>
-                                <div class="col mx-1">
+                                <div class="col mx-auto logo-icon">
                                     {% if user == post.owner %}
                                     <a class="d-flex fa-regular fa-pen-to-square justify-content-end fs-5 mt-1 mx-1 edit-button" href="{% url 'post_edit' post.pk %}"></a>
                                     {% endif %}
