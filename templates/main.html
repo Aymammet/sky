@@ -3,6 +3,7 @@
 {% block content %}
 
     <div class="container p-4 text-center my-5">
+        {% if request.user.is_authenticated %}
         <div class="my-5 flex-column row align-items-center justify-content-center">
             {% for post in posts %}
             <div class="posts col-md-8 px-2 align-self-center mb-4"  style="width: 500px; border-radius: 5px; padding: 5px; background-color: rgb(250, 250, 250);">
@@ -81,5 +82,6 @@
             </div>
             {% endfor %}
         </div> 
+        {% endif %}
     </div>
 {% endblock content %}

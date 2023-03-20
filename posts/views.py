@@ -8,15 +8,15 @@ from .forms import PostForm
 
 
 # Create your views here.
-class PostListView(ListView):
-     model = Post
-     template_name = 'main.html'
-     context_object_name = 'posts'
+class PostListView(ListView): 
+    model = Post
+    template_name = 'main.html'
+    context_object_name = 'posts'
 
-     def get_queryset(self):
-          base_query = super().get_queryset()
-          data = base_query.order_by('-created_date', '-created_time')
-          return data
+    def get_queryset(self):
+        base_query = super().get_queryset()
+        data = base_query.order_by('-created_date', '-created_time')
+        return data
      
 class PostEditView(UpdateView):
     model = Post

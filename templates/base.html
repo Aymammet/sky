@@ -19,6 +19,7 @@
                 <a class="navbar-brand" href="{% url 'posts' %}">
                     <img  class="h-25 d-inline-block rounded-4 mx-1" style="width: 80px;" src="{% static 'images/sky_logo_main.png' %}" alt="Skylogo-main">   
                 </a>
+                {% if user.is_authenticated %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -64,7 +65,7 @@
                                 <img class="rounded-circle" src="https://cdn.pixabay.com/photo/2014/11/13/06/12/boy-529067__340.jpg" alt="Avatar Image" width="32" height="32">
                             </a>
                             <ul class="dropdown-menu bg-secondary dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">{{ user.username }}</a></li>
+                                <li><a class="dropdown-item" href="#">{{user.username}}</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <a class="dropdown-item" href="{% url 'logout' %}">
@@ -81,6 +82,7 @@
                       <a class="nav-link disabled">Disabled</a>
                     </li> -->
                 </div>
+                {% endif %}
             </div>
         </nav>
         <main>

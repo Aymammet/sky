@@ -1,42 +1,56 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-        <div class="container col-md-5 col-lg-4 col-xl-3 col-sm-6 mx-auto mt-5">
-          <div class="text-center">
-            <img  class="img-fluid rounded-4 w-75 mb-4 logo-icon" src="{% static 'images/sky_logo_main.png' %}" alt="Skylogo-main">
-          </div>  
-          <p class="text-center text-bg-primary mb-5 p-1 rounded-1">SKY-Social-Media</p>
-          <div class="form-outline mb-4 input-group flex-nowrap">
-              <span class="input-group-text fa-regular fa-user fs-5" id="addon-wrapping"></span>
-              <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
-          </div>
-          <!-- Password input -->
-          <div class="form-outline mb-4 input-group flex-nowrap">
-              <span class="input-group-text fa-solid fa-key fs-5" id="addon-wrapping"></span>
-              <input type="text" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
-
-          </div>
-          <!-- 2 column grid layout for inline styling -->
-          <div class="row mb-4">
+<div class="container col-md-5 col-lg-4 col-xl-3 col-sm-6 mx-auto mt-5">
+    <div class="text-center">
+        <img  class="img-fluid rounded-4 w-75 mb-4 logo-icon" src="{% static 'images/sky_logo_main.png' %}" alt="Skylogo-main">
+    </div>  
+    <p class="text-center text-bg-primary mb-5 p-1 rounded-1">SKY-Social-Media</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-outline mb-2 input-group flex-nowrap">
+            <span class="input-group-text fa-regular fa-user fs-5" id="addon-wrapping"></span>
+            <input name="username" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+        </div>
+        <div>
+            {% if form.username.errors %}
+                <ul class="errorlist">
+                    {% for error in form.username.errors %}
+                        <p class="text-danger mb-2">{{ error }}</p>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="form-outline mb-2 input-group flex-nowrap">
+            <span class="input-group-text fa-solid fa-key fs-5" id="addon-wrapping"></span>
+            <input name="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="addon-wrapping">
+        </div>
+        <div>
+            {% if form.password.errors %}
+                <ul class="errorlist">
+                    {% for error in form.password.errors %}
+                        <p class="text-danger mb-2">{{ error }}</p>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="row mb-4">
             <div class="col d-flex justify-content-center">
-              <!-- Checkbox -->
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked/>
-                <label class="form-check-label" for="form2Example31"> Remember me </label>
-              </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked/>
+                    <label class="form-check-label" for="form2Example31"> Remember me </label>
+                </div>
             </div>
             <div class="col">
-              <!-- link to Re-create Password -->
-              <a href="">Forgot password?</a>
+                <a href="">Forgot password?</a>
             </div>
-          </div>
-          <!-- Submit button Sign IN -->
-          <div class="text-center form-outline mb-4 input-group justify-content-center">
-              <button type="button" class="btn btn-primary col-4">Sign in</button>
-          </div>
-          <!-- Register buttons -->
-          <div class="text-center">
-            <p>Not a member? <a href="{% url 'register' %}">Register</a></p>
-          </div>
         </div>
+        <div class="text-center form-outline mb-4 input-group justify-content-center">
+            <button type="submit" class="btn btn-primary col-4">Sign in</button>
+        </div>
+        <div class="text-center">
+            <p>Not a member? <a class="text-primary" href="{% url 'register' %}">Register</a></p>
+        </div>
+    </form>
+</div>    
 {% endblock content %}
