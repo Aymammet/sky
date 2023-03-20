@@ -10,6 +10,7 @@ class User(AbstractUser):
     bio = models.TextField(max_length=500, blank=True, null=True)
     birth_date = models.DateField(null=True, blank=True, default='yyyy-mm-dd')
     gender = models.CharField(max_length=6, choices=[('Male', 'Male'),('Female', 'Female'),('Other', 'Other')], blank=True)
+    avatar_pic = models.ImageField(upload_to='profile_images', max_length=100, blank=True, null=True)
 
     def __str__(self):
         return self.username

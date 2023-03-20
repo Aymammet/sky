@@ -20,10 +20,16 @@ class UserUpdateView(UpdateView):
     model = User
     fields = ['username','first_name', 'last_name', 'profession','bio', 'email']
     template_name = 'profile-edit.html'
+        
+    def get_object(self, queryset=None):
+        id = self.kwargs.get('pk')
+        return User.objects.get(id=id)
+ 
+         
+    def form_valid(self, fields):
+        myprofile = fields.save(commit=False)
+        myprofile.owner = self.request.user
+        response = super().form_valid(fields)
+        return response
 
-    def get(self, request):
-        if request.user.is_authenticated:
-            return render(request, self.template_name)
-        else:
-            return render(request, 'login.html')
 
