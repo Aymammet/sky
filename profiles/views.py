@@ -25,13 +25,4 @@ class UserUpdateView(UpdateView):
         id = self.kwargs.get('pk')
         return User.objects.get(id=id)
  
-         
-    def form_valid(self, fields):
-        myprofile = fields.save(commit=False)
-        myprofile.owner = self.request.user
-        response = super().form_valid(fields)
-        return response
-    
-
-
 
