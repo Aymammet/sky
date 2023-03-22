@@ -10,7 +10,7 @@
                 <div class=" d-flex mb-2" >
                     <div class="col-auto mt-1`">
                        <a href="{% url 'profile' post.owner.id %}">
-                            <img style="width:52px; height: 52px" class="avatar rounded-circle text-bg-secondary " src="https://cdn.pixabay.com/photo/2014/11/13/06/12/boy-529067__340.jpg" alt="avatar">
+                            <img style="width:52px; height: 52px" class="avatar rounded-circle text-bg-secondary " src="{{post.owner.profile_image.url}}" alt="avatar">
                        </a> 
                     </div>
                     <div class="col-11 px-1">
