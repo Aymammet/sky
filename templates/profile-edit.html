@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}    
     <div class="container-xl px-4 mt-4">
         <div class="row">
             <div class="col-xl-4">
@@ -6,10 +9,14 @@
                     <div class="card-header">Profile Picture</div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-2" src="https://bootdey.com/img/Content/avatar/avatar7.png" width="220cm" alt="profile_image">
+                        <img class="img-account-profile rounded-circle mb-2" id="profile-image" src="{{ user.avatar_pic.url }}" width="220cm">
                         <!-- Profile picture help block-->
                         <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                         <!-- Profile picture upload button-->
+                        <div class="mb-3">
+                            <label for="imagefile" class="form-label"></label>
+                            <input class="form-control form-control-sm" id="imagefile" type="file" alt="profile-image">
+                        </div>
                         <button class="btn btn-primary" type="button">Upload new image</button>
                     </div>
                 </div>
@@ -20,13 +27,14 @@
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
                         <form>
+                            {% csrf_token %}
                             <!-- Form Group (username)-->
                             <div class="mb-1">
                                 <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
                             </div>
                             <div class="form-outline mb-3 input-group flex-nowrap">
                                 <span class="input-group-text fa-regular fa-user fs-5" id="addon-wrapping"></span>
-                                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="Aykos">
+                                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="{{ user.username }}">
                             </div>
                 
                             <!-- First namne and Last name-->
@@ -35,13 +43,13 @@
                                 <!-- Form Group (first name)-->
                                 <div class="form-outline mb-3 input-group flex-nowrap">
                                     <span class="input-group-text fa-solid fa-user-tie fs-5" id="addon-wrapping"></span>
-                                    <input type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="addon-wrapping" value="Aymammet">
+                                    <input type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ user.first_name }}">
                                 </div>
                                 <!-- Form Group (last name)-->
                                 <label class="small mb-1" for="inputUsername">Last name</label>
                                 <div class="form-outline mb-2 input-group flex-nowrap">
                                     <span class="input-group-text fa-solid fa-user-tie fs-5" id="addon-wrapping"></span>
-                                    <input type="text" class="form-control" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" value="Annamyradow">
+                                    <input type="text" class="form-control" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" value="{{ user.last_name }}">
                                 </div>
                             </div>
                             <!-- Form Row        -->
@@ -49,12 +57,12 @@
                                 <!-- Form Group (organization name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputOrgName">Occupation</label>
-                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Occupation" value="Software Developer">
+                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Occupation" value="{{ user.profession }}">
                                 </div>
                                 <!-- Form Group (location)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputLocation">Bio</label>
-                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your Bio" value="180 cm height, athletic">
+                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your Bio" value="{{ user.bio }}">
                                 </div>
                             </div>
                             <!-- Form Group (email address)-->
@@ -62,14 +70,29 @@
                             <div class="mb-3">
                                 <div class="form-outline mb-4 input-group flex-nowrap">
                                     <span class="input-group-text fa-regular fa-envelope fs-5" id="addon-wrapping"></span>
-                                    <input type="email" class="form-control" id="inputEmailAddress" placeholder="Enter your email addres" aria-label="Firstname" aria-describedby="addon-wrapping" value="name@example.com">
+                                    <input type="email" class="form-control" id="inputEmailAddress" placeholder="Enter your email addres" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ user.email }}">
                                 </div>
                             </div>
                             <!-- Save changes button-->
-                            <button class="btn btn-primary" type="button">Save changes</button>
+                            <div class="">
+                                <a href="{% url 'profile' user.id %}" class="btn btn-primary mx-1">
+                                    Profile
+                                </a>
+                                <button class="btn btn-primary" type="button">Save changes</button>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded",() => {
+            document.getElementById('imagefile').addEventListener('change', (event) => {
+                image = document.getElementById('imagefile')
+                var src = URL.createObjectURL(event.target.files[0])
+                document.getElementById('profile-image').src = src
+            })
+        })
+    </script>
+{% endblock content %}
