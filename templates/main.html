@@ -10,20 +10,18 @@
                 <div class=" d-flex mb-2" >
                     <div class="col-auto mt-1`">
                        <a href="{% url 'profile' post.owner.id %}">
-                        {% if post.owner.avatar_pic %}
-                            <img style="width:52px; height: 52px" class="avatar rounded-circle text-bg-secondary " src="{{ user.avatar_pic.url }}" alt="Avatar">
-                        {% endif %}
-                        </a> 
+                            <img style="width:52px; height: 52px" class="avatar rounded-circle text-bg-secondary " src="{{post.owner.profile_image.url}}" alt="avatar">
+                       </a> 
                     </div>
-                    <div class="col-11 px-2">
+                    <div class="col-11 px-1">
                         <div>
-                            <div class="text-start row align-items-start name-text">
+                            <div class="col-11 text-start row align-items-start name-text flex-nowrap">
                                 <a href="{% url 'profile' post.owner.id %}">
-                                    <div class="col">
-                                        <b>{{ post.owner.first_name }} {{ post.owner.last_name }}</b>
-                                    </div>
+                                <div class="col">
+                                    <b>{{ post.owner.first_name }} {{ post.owner.last_name }}</b>
+                                </div>
                                 </a>
-                                <div class="col mx-1">
+                                <div class="col mx-auto logo-icon">
                                     {% if user == post.owner %}
                                     <a class="d-flex fa-regular fa-pen-to-square justify-content-end fs-5 mt-1 mx-1 edit-button" href="{% url 'post_edit' post.pk %}"></a>
                                     {% endif %}
