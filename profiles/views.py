@@ -12,7 +12,7 @@ class UserDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['posts'] = Post.objects.filter(owner=self.object)
+        context['posts'] = Post.objects.filter(owner=self.object).order_by('-created_date', '-created_time')
         return context
 
 
