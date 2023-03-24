@@ -1,8 +1,9 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import DetailView, UpdateView
 from .models import User
 from posts.models import Post
+from django.urls import reverse_lazy, reverse
 
 
 class UserDetailView(DetailView):
@@ -24,5 +25,14 @@ class UserUpdateView(UpdateView):
     def get_object(self, queryset=None):
         id = self.kwargs.get('pk')
         return User.objects.get(id=id)
- 
-
+    
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        if user == self.request.user:
+            user.save()
+            return super().form_valid(form)
+        else:
+            return redirect('profile')
+        
+    def get_success_url(self):
+        return reverse_lazy('profile', kwargs={'pk': self.object.pk})
