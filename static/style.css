@@ -28,18 +28,10 @@ a {
 }
 
 @media only screen and (max-width: 450px) {
-    .button-text, .date-time, .logo-icon {
+    .button-text {
         display: none;
     }
 }
-
-@media only screen and (max-width: 370px) {
-    .name-text {
-        display: none;
-    }
-    
-}
-
 
 .error-text {
     color: red;
@@ -57,7 +49,7 @@ a {
     cursor: pointer;
 }
 
-.edit-button:hover {
+.edit-button:hover, .int-buttons:hover {
     color: #0d6efd;
 }
 
