@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.views.generic import DetailView, UpdateView
 from .models import User
 from posts.models import Post
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 
 
 class UserDetailView(DetailView):
