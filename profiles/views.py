@@ -32,7 +32,7 @@ class UserUpdateView(UpdateView):
             user.save()
             return super().form_valid(form)
         else:
-            return redirect('profile')
+            return redirect('profile-edit.html')
         
     def get_success_url(self):
         return reverse_lazy('profile', kwargs={'pk': self.object.pk})
