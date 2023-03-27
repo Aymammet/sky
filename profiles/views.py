@@ -20,9 +20,8 @@ class UserUpdateView(UpdateView):
     model = User
     fields = ['username','first_name', 'last_name', 'profession','bio', 'email', 'profile_image']
     template_name = 'profile-edit.html'
-        
+
     def get_object(self, queryset=None):
         id = self.kwargs.get('pk')
         return User.objects.get(id=id)
- 
-
+        
