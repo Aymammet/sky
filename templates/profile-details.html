@@ -5,12 +5,12 @@
     <div class="row my-4">
         <div style="height: auto;" class="col-md-5 col-lg-5 col-sm-12 d-flex align-content-start flex-column">
             <div class="my-1 d-flex justify-content-center">
-                <img src="{{user.profile_image.url}}" alt="Admin" class="rounded-circle border border-white" height="150" width="150">
+                <img src="{{ profile_user.profile_image.url }}" alt="Admin" class="rounded-circle border border-white" height="150" width="150">
             </div>
             <div class="my-1 d-flex justify-content-center">
                 <p class="my-0 font-weight-bold">
                     <b>
-                        {{ user.first_name }} {{ user.last_name }}
+                        {{ profile_user.first_name }} {{ profile_user.last_name }}
                     </b>
                 </p>
             </div>
@@ -18,8 +18,9 @@
                 <a href="#" class="btn btn-primary col-3">
                     <i class="fa-solid fa-person-circle-plus fa-lg "></i>
                 </a>
+                
                 {% if request.user.is_authenticated %}
-                    {% if user.id == request.user.id %}
+                    {% if profile_user == request.user %}
                         <a href="{% url 'profile-edit' user.id %}" class="btn btn-primary col-3">
                             <i class="fa-solid fa-user-pen fa-lg "></i>
                         </a>
@@ -35,25 +36,25 @@
                 </div>
                 <div class="d-flex align-items-center" style="min-height: 50px ;border-bottom: 1px solid gray;">
                     <i class="mb-0 mx-3 fa-regular fa-user"></i>
-                    <div>@{{ user.username }}</div>
+                    <div>@{{ profile_user.username }}</div>
                 </div>
                 <div class="d-flex align-items-center" style="min-height: 50px ;border-bottom: 1px solid gray;">
                     <i class="mb-0 mx-3 fa-solid fa-venus-mars"></i>
-                    <div>{{ user.gender }}</div>
+                    <div>{{ profile_user.gender }}</div>
                 </div>
                 <div class="d-flex align-items-center" style="min-height: 50px ;border-bottom: 1px solid gray;">
                     <i class="mb-0 mx-3 fa-solid fa-cake-candles"></i>
-                    <div>{{ user.birth_date }}</div>
+                    <div>{{ profile_user.birth_date }}</div>
                 </div>
                 <div class="d-flex align-items-center" style="min-height: 50px ;border-bottom: 1px solid gray;">
                     <i class="mb-0 mx-3 fa-solid fa-user-tie"></i>
-                    <div>{{ user.profession }}</div>
+                    <div>{{ profile_user.profession }}</div>
                 </div>
                 <div class="d-flex align-items-center" style="min-height: 50px; height: auto ;border-bottom: 1px solid gray;">
                     <i class="mb-0 mx-3 fa-regular fa-address-card"></i>
                     <div>
                         <p class="py-0 my-2">
-                            {{ user.bio }} 
+                            {{ profile_user.bio }} 
                         </p>
                     </div>
                 </div>
