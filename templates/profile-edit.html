@@ -12,8 +12,8 @@
                             <img class="img-account-profile rounded-circle mb-2" id="profile-image" src="{{ user.profile_image.url }}" width="150">
                             <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                             <div class="mb-3">
-                                <label for="imagefile" class="form-label"></label>
-                                <input class="form-control form-control-sm" name="profile_image" id="imagefile" type="file" alt="profile-image" value="{{ form.profile_image.url }}">
+                                <label for="profileimagefile" class="form-label"></label>
+                                <input class="form-control form-control-sm" name="profile_image" id="profileimagefile" type="file" alt="profile-image" value="{{ form.profile_image.url }}">
                             </div>
                             <button class="btn btn-primary" type="submit">Upload new image</button>
                         </div>
@@ -42,23 +42,24 @@
                                     <input type="text" name="last_name"  class="form-control" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" value="{{ form.last_name.value }}">
                                 </div>
                             </div>
+                            <label class="small mb-1" for="inputGender">Gender</label>
+                            <div class="mb-3 col-4">
+                                <div class="form-outline mb-4 input-group flex-nowrap">
+                                    <span class="input-group-text fa-solid fa-venus-mars fs-5" id="addon-wrapping"></span>
+                                    <input type="text" class="form-control" name="gender" id="checkboxgender" placeholder="Your gender"  value="{{ form.gender.value }}">
+                                </div>
+                            </div>
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputOrgName">Occupation</label>
                                     <input class="form-control" id="inputOrgName" type="text" name="profession" placeholder="Occupation" value="{{ form.profession.value }}">
                                 </div>
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLocation">Bio</label>
+                                    <label class="small mb-1" for="inputLocation">Status</label>
                                     <input class="form-control" id="inputLocation" name="bio" type="text" placeholder="Enter your Bio" value="{{ form.bio.value }}">
                                 </div>
                             </div>
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <div class="mb-3">
-                                <div class="form-outline mb-4 input-group flex-nowrap">
-                                    <span class="input-group-text fa-regular fa-envelope fs-5" id="addon-wrapping"></span>
-                                    <input type="email" class="form-control" name="email" id="inputEmailAddress" placeholder="Enter your email addres" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ form.email.value }}">
-                                </div>
-                            </div>
+
                             <div class="">
                                 <a href="{% url 'profile' user.id %}" class="btn btn-primary mx-1">
                                     Profile
@@ -73,8 +74,8 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded",() => {
-            document.getElementById('imagefile').addEventListener('change', (event) => {
-                image = document.getElementById('imagefile')
+            document.getElementById('profileimagefile').addEventListener('change', (event) => {
+                image = document.getElementById('profileimagefile')
                 var src = URL.createObjectURL(event.target.files[0])
                 document.getElementById('profile-image').src = src
             })
