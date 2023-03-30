@@ -73,6 +73,13 @@
                                     <input type="email" class="form-control" id="inputEmailAddress" placeholder="Enter your email addres" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ user.email }}">
                                 </div>
                             </div>
+                            <label class="small mb-1" for="inputBirthDate">Birth Date</label>
+                            <div class="col-md-6">
+                                <div class="form-outline mb-4 input-group flex-nowrap">
+                                    <span class="input-group-text fa-regular fa-calendar-days fs-5" id="addon-wrapping"></span>
+                                    <input type="date" name="birth_date" class="form-control" id="inputBirthDate" placeholder="Enter your birth date" aria-label="Date" aria-describedby="addon-wrapping" value="{{ form.birth_date.value }}">
+                                </div>
+                            </div>
                             <!-- Save changes button-->
                             <div class="">
                                 <a href="{% url 'profile' user.id %}" class="btn btn-primary mx-1">
