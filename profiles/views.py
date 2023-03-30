@@ -8,7 +8,7 @@ from posts.models import Post
 class UserDetailView(DetailView):
     model = User
     template_name = 'profile-details.html'
-    context_object_name = 'user'
+    context_object_name = 'profile_user'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -20,9 +20,9 @@ class UserUpdateView(UpdateView):
     model = User
     fields = ['username','first_name', 'last_name', 'profession','bio', 'email', 'profile_image']
     template_name = 'profile-edit.html'
-        
+
+
     def get_object(self, queryset=None):
         id = self.kwargs.get('pk')
         return User.objects.get(id=id)
- 
-
+        
