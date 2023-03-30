@@ -1,4 +1,9 @@
 {
+   "builds": [
+        {
+            "src": "sky/wsgi.py",
+            "use": "@vercel/python"
+    }],
     "routes": [
         {
             "src": "/(.*)",
