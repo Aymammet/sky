@@ -20,7 +20,8 @@ from sky import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path("", include("main.urls")),   
+    path("", include("main.urls")),
+    path("", include("posts.urls")),    
     path('admin/', admin.site.urls),
     path("profile/", include("profiles.urls")),
     path("posts/", include("posts.urls")),
