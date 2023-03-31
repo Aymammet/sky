@@ -14,8 +14,8 @@
                         <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                         <!-- Profile picture upload button-->
                         <div class="mb-3">
-                            <label for="imagefile" class="form-label"></label>
-                            <input class="form-control form-control-sm" id="imagefile" type="file" alt="profile-image">
+                            <label for="profile-file" class="form-label"></label>
+                            <input class="form-control form-control-sm" id="profile-file" type="file" alt="profile-image">
                         </div>
                         <button class="btn btn-primary" type="button">Upload new image</button>
                     </div>
@@ -95,8 +95,8 @@
     </div>
     <script>
         document.addEventListener("DOMContentLoaded",() => {
-            document.getElementById('imagefile').addEventListener('change', (event) => {
-                image = document.getElementById('imagefile')
+            document.getElementById('profile-file').addEventListener('change', (event) => {
+                image = document.getElementById('profile-file')
                 var src = URL.createObjectURL(event.target.files[0])
                 document.getElementById('profile-image').src = src
             })
