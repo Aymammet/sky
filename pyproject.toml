@@ -6,8 +6,11 @@ authors = ["Aymammet Annamyradov <aymammet2018@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.9"
 pillow = "^9.4.0"
+django = "^4.1.7"
+psycopg2-binary = "^2.9.5"
+dj-database-url = "^1.2.0"
 
 
 [build-system]

@@ -1,0 +1,9 @@
+asgiref==3.6.0
+dj-database-url==1.2.0
+Django==4.1.7
+gunicorn==20.1.0
+Pillow==9.4.0
+psycopg2-binary==2.9.5
+-e git+ssh://git@github.com/Aymammet/sky.git@e2b283c03deeaf17839ffd768321025072dd1e17#egg=sky
+sqlparse==0.4.3
+tzdata==2023.2
