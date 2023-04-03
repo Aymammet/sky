@@ -2,101 +2,78 @@
 {% load static %}
 {% block content %}    
     <div class="container-xl px-4 mt-4">
-        <div class="row">
-            <div class="col-xl-4">
-                <!-- Profile picture card-->
-                <div class="card mb-4 mb-xl-0 ">
-                    <div class="card-header">Profile Picture</div>
-                    <div class="card-body text-center">
-                        <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-2" id="profile-image" src="{{ user.profile_image.url }}" width="220cm">
-                        <!-- Profile picture help block-->
-                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-                        <!-- Profile picture upload button-->
-                        <div class="mb-3">
-                            <label for="imagefile" class="form-label"></label>
-                            <input class="form-control form-control-sm" id="imagefile" type="file" alt="profile-image">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card mb-4 mb-xl-0 ">
+                        <div class="card-header">Profile Picture</div>
+                        <div class="card-body text-center">
+                            <img class="img-account-profile rounded-circle mb-2" id="profile-image" src="{{ user.profile_image.url }}" width="150">
+                            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                            <div class="mb-3">
+                                <label for="image-file" class="form-label"></label>
+                                <input class="form-control form-control-sm" name="profile_image" id="image-file" type="file" alt="profile-image" value="{{ form.profile_image.url }}">
+                            </div>
                         </div>
-                        <button class="btn btn-primary" type="button">Upload new image</button>
                     </div>
                 </div>
-            </div>
-            <div class="col-xl-8">
-                <!-- Account details card-->
-                <div class="card mb-4">
-                    <div class="card-header">Account Details</div>
-                    <div class="card-body">
-                        <form>
-                            {% csrf_token %}
-                            <!-- Form Group (username)-->
+                <div class="col-xl-8">
+                    <div class="card mb-4">
+                        <div class="card-header">Account Details</div>
+                        <div class="card-body">
                             <div class="mb-1">
                                 <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
                             </div>
                             <div class="form-outline mb-3 input-group flex-nowrap">
                                 <span class="input-group-text fa-regular fa-user fs-5" id="addon-wrapping"></span>
-                                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping" value="{{ user.username }}">
+                                <input type="text" name="username" class="form-control" placeholder="{{ user.username }}" aria-label="Username" aria-describedby="addon-wrapping" value="{{ form.username.value }}" disabled>
                             </div>
-                
-                            <!-- First namne and Last name-->
                             <div class="row gx-3 mb-3">
                                 <label class="small mb-1" for="inputUsername">First name</label>
-                                <!-- Form Group (first name)-->
                                 <div class="form-outline mb-3 input-group flex-nowrap">
                                     <span class="input-group-text fa-solid fa-user-tie fs-5" id="addon-wrapping"></span>
-                                    <input type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ user.first_name }}">
+                                    <input type="text" name="first_name" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ form.first_name.value }}">
                                 </div>
-                                <!-- Form Group (last name)-->
                                 <label class="small mb-1" for="inputUsername">Last name</label>
                                 <div class="form-outline mb-2 input-group flex-nowrap">
                                     <span class="input-group-text fa-solid fa-user-tie fs-5" id="addon-wrapping"></span>
-                                    <input type="text" class="form-control" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" value="{{ user.last_name }}">
+                                    <input type="text" name="last_name"  class="form-control" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" value="{{ form.last_name.value }}">
                                 </div>
                             </div>
-                            <!-- Form Row        -->
+                            <label class="small mb-1" for="inputGender">Gender</label>
+                            <div class="mb-3 col-4">
+                                <div class="form-outline mb-4 input-group flex-nowrap">
+                                    <span class="input-group-text fa-solid fa-venus-mars fs-5" id="addon-wrapping"></span>
+                                    <input type="text" class="form-control" name="gender" id="checkboxgender" placeholder="Your gender"  value="{{ form.gender.value }}">
+                                </div>
+                            </div>
                             <div class="row gx-3 mb-3">
-                                <!-- Form Group (organization name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputOrgName">Occupation</label>
-                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Occupation" value="{{ user.profession }}">
+                                    <input class="form-control" id="inputOrgName" type="text" name="profession" placeholder="Occupation" value="{{ form.profession.value }}">
                                 </div>
-                                <!-- Form Group (location)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLocation">Bio</label>
-                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your Bio" value="{{ user.bio }}">
+                                    <label class="small mb-1" for="inputLocation">Status</label>
+                                    <input class="form-control" id="inputLocation" name="bio" type="text" placeholder="Enter your Bio" value="{{ form.bio.value }}">
                                 </div>
                             </div>
-                            <!-- Form Group (email address)-->
-                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                            <div class="mb-3">
-                                <div class="form-outline mb-4 input-group flex-nowrap">
-                                    <span class="input-group-text fa-regular fa-envelope fs-5" id="addon-wrapping"></span>
-                                    <input type="email" class="form-control" id="inputEmailAddress" placeholder="Enter your email addres" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ user.email }}">
-                                </div>
-                            </div>
-                            <label class="small mb-1" for="inputBirthDate">Birth Date</label>
-                            <div class="col-md-6">
-                                <div class="form-outline mb-4 input-group flex-nowrap">
-                                    <span class="input-group-text fa-regular fa-calendar-days fs-5" id="addon-wrapping"></span>
-                                    <input type="date" name="birth_date" class="form-control" id="inputBirthDate" placeholder="Enter your birth date" aria-label="Date" aria-describedby="addon-wrapping" value="{{ form.birth_date.value }}">
-                                </div>
-                            </div>
-                            <!-- Save changes button-->
                             <div class="">
                                 <a href="{% url 'profile' user.id %}" class="btn btn-primary mx-1">
                                     Profile
                                 </a>
-                                <button class="btn btn-primary" type="button">Save changes</button>
+                                <button class="btn btn-primary save-button" type="submit">Save</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded",() => {
-            document.getElementById('imagefile').addEventListener('change', (event) => {
-                image = document.getElementById('imagefile')
+            document.getElementById('image-file').addEventListener('change', (event) => {
+                image = document.getElementById('image-file')
                 var src = URL.createObjectURL(event.target.files[0])
                 document.getElementById('profile-image').src = src
             })
