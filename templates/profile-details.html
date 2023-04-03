@@ -18,7 +18,6 @@
                 <a href="#" class="btn btn-primary col-3">
                     <i class="fa-solid fa-person-circle-plus fa-lg "></i>
                 </a>
-                
                 {% if request.user.is_authenticated %}
                     {% if profile_user == request.user %}
                         <a href="{% url 'profile-edit' user.id %}" class="btn btn-primary col-3">
