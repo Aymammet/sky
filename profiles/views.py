@@ -19,7 +19,7 @@ class UserDetailView(DetailView):
 
 class UserUpdateView(UpdateView):
     model = User
-    fields = ['first_name', 'last_name', 'profession', 'bio', 'profile_image']
+    fields = ['profile_image','first_name', 'last_name', 'gender', 'profession', 'bio', 'birth_date', ]
     template_name = 'profile-edit.html'
 
 
