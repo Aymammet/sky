@@ -67,7 +67,7 @@
                             <div class="col-md-6">
                                 <div class="form-outline mb-4 input-group flex-nowrap">
                                     <span class="input-group-text fa-regular fa-calendar-days fs-5" id="addon-wrapping"></span>
-                                    <input type="date" name="birth_date" class="form-control" id="inputBirthDate"  aria-label="Date" aria-describedby="addon-wrapping" value="{{ form.birth_date.value }}">
+                                    <input type="date" name="birth_date" class="form-control" id="inputBirthDate"  aria-label="Date" aria-describedby="addon-wrapping" value="{{ object.birth_date|default_if_none:''|date:'Y-m-d' }}">
                                 </div>
                             </div>
                             <div class="">

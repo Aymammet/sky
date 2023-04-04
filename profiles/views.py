@@ -4,6 +4,7 @@ from django.views.generic import DetailView, UpdateView
 from .models import User
 from posts.models import Post
 from django.urls import reverse_lazy
+from django.utils.dateformat import DateFormat
 
 
 class UserDetailView(DetailView):
@@ -37,3 +38,12 @@ class UserUpdateView(UpdateView):
         
     def get_success_url(self):
         return reverse_lazy('profile', kwargs={'pk': self.object.pk})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # format the birth_date field as a string
+        birth_date = self.object.birth_date
+        if birth_date:
+            date_format = DateFormat(birth_date)
+            context['formatted_birth_date'] = date_format.format('Y-m-d')
+        return context
