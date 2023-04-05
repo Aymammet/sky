@@ -21,13 +21,14 @@ class PostListView(LoginRequiredMixin, ListView):
         return data
     
       
-class PostEditView(UpdateView):
+class PostEditView(LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'post-edit.html'
     context_object_name = 'post'
     fields = ['title', 'image']
     success_url = reverse_lazy('posts')
     form = PostForm
+    login_url = reverse_lazy('login')
 
     def get_object(self, queryset=None):
         id = self.kwargs.get('pk')
@@ -41,20 +42,22 @@ class PostEditView(UpdateView):
         return response
 
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'post-delete.html'
     success_url = reverse_lazy('posts')
+    login_url = reverse_lazy('login')
 
         
-class PostCreateview(CreateView):
+class PostCreateview(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'post-create.html'
     context_object_name = 'post'
     fields = ['title', 'image']
     success_url = reverse_lazy('posts')
     form = PostForm
-
+    login_url = reverse_lazy('login')
+    
     def get(self, request):
         if request.user.is_authenticated:
             return render(request, self.template_name)
