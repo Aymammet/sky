@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect, Http404
 from django.views.generic import DetailView, UpdateView
 from .models import User
 from posts.models import Post
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils.dateformat import DateFormat
 
 
@@ -22,11 +22,15 @@ class UserUpdateView(UpdateView):
     model = User
     fields = ['profile_image','first_name', 'last_name', 'gender', 'profession', 'bio', 'birth_date', ]
     template_name = 'profile-edit.html'
+    success_url = reverse_lazy('profile-edit.html')
 
 
     def get_object(self, queryset=None):
         id = self.kwargs.get('pk')
-        return User.objects.get(id=id)
+        if id != self.request.user.id:
+            raise Http404("You are not authorized to access this page, it is not your profile edit page!")
+        else:
+            return User.objects.get(id=id)
     
     def form_valid(self, form):
         user = form.save(commit=False)
