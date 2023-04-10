@@ -9,13 +9,15 @@
     <title>404 Error Page</title>
 </head>
 <body>
-    <div class="card-body container-fluid col-6 text-center delete-text">
-        <h2>You are lost Dude!</h2>
-        <ul>
-            <a class="mainpage-button" href="{% url 'posts' %}">Go back to Main Page</a>
-        </ul>
-    </div>
-
-    
+    <div class="error-page">
+        <div class="container-fluid col-6">
+            <div class="page404 text-center">
+                <h2 class="mb-3">You are lost Dude!</h2>
+                <p>
+                    <a class="mainpage-button btn btn-primary mb-4" href="{% url 'posts' %}">Back to Main Page</a>
+                </p>
+            </div>
+        </div>
+    </div>    
 </body>
 {% endblock content %}

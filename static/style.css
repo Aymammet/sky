@@ -53,10 +53,6 @@ a {
     color: #0d6efd;
 }
 
-.mainpage-button:hover, .int-buttons:hover {
-    color: #0d6efd;
-}
-
 .card-body {
     padding: 20px;
     border-radius: 5px;
@@ -73,4 +69,14 @@ a {
 
 .save-button {
     width: 2cm;
+}
+
+.error-page {
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.page404 {
+    box-shadow: 0 4px 6px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    font-size: large;
 }
