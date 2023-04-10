@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse , HttpResponseRedirect, HttpResponseForbidden
 from profiles.models import User
 from .models import Post
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
