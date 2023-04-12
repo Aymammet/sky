@@ -33,20 +33,14 @@ a {
     }
 }
 
+@media only screen and (max-width: 410px) {
+    .three-buttons {
+        display: none;
+    }
+}
+
 .error-text {
     color: red;
-}
-
-.delete-button a:hover {
-    color: rgba(190, 5, 5, 0.822);
-    border-radius: 5px; /* add rounded corners */
-    cursor: pointer;
-}
-
-.button-delete:hover {
-    background-color: #dc3545;
-    border-radius: 5px; /* add rounded corners */
-    cursor: pointer;
 }
 
 .edit-button:hover, .int-buttons:hover {
