@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse , HttpResponseRedirect, HttpResponseForbidden
 from profiles.models import User
 from .models import Post
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import PostForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin ,UserPassesTestMixin
+
 
 
 # Create your views here.
@@ -21,7 +21,7 @@ class PostListView(LoginRequiredMixin, ListView):
         return data
     
       
-class PostEditView(LoginRequiredMixin, UpdateView):
+class PostEditView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'post-edit.html'
     context_object_name = 'post'
@@ -33,6 +33,13 @@ class PostEditView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         id = self.kwargs.get('pk')
         return Post.objects.get(id=id)
+    
+    def test_func(self):
+        post = self.get_object()
+        return post.id == self.request.user.id
+    
+    def handle_no_permission(self):
+        return render(self.request, '404.html', status=404)
  
          
     def form_valid(self, form):
