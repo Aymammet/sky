@@ -29,19 +29,19 @@
                                     {% endfor %}
                                 {% endif %}
                             </div>
-                            <div class="container-fluid three-buttons">
+                            <div class="container-fluid postedit-buttons">
                                 <div class="text-center">
                                     <div class="">
                                         <a href="{% url 'posts' %}">
-                                            <button type="button" class="btn btn-secondary mx-1 mb-4 col-3">
+                                            <button type="button" class="btn btn-secondary btn-block mx-1 mb-4 col-3">
                                                 Cancel
                                             </button>
                                         </a>
-                                        <button type="submit" class="btn btn-primary mx-1 mb-4 col-3">
+                                        <button type="submit" class="btn btn-primary btn-block mx-1 mb-4 col-3">
                                             Save
                                         </button>
                                         <a href="{% url 'post_delete' post.id %}">
-                                            <button type="button" class="btn btn-danger mx-1 mb-4 col-3">
+                                            <button type="button" class="btn btn-danger btn-block mx-1 mb-4 col-3">
                                                 Delete
                                             </button>
                                         </a>

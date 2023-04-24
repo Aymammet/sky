@@ -34,9 +34,23 @@ a {
 }
 
 @media only screen and (max-width: 410px) {
-    .three-buttons {
-        display: none;
+    .postedit-buttons {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
     }
+
+    .postedit-buttons button {
+        flex: 0 0 45%;
+        margin: 0.5rem;
+      }
+
+    .postedit-buttons button.btn-block {
+        width: 70%;
+        margin: 0;
+      }
 }
 
 .error-text {
