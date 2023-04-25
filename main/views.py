@@ -1,13 +1,11 @@
 # Create your views here.
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.views.generic import CreateView
 from django.core.exceptions import ValidationError
 from profiles.models import User
 from django.urls import reverse_lazy
 from .forms import UserForm
 from django.contrib.auth.views import LoginView
-
 
 
 class CustomLoginView(LoginView):
@@ -55,4 +53,4 @@ class CustomRegisterView(CreateView):
                     user.save()
                     return redirect('login')
                return render(request, self.template_name, {'form': form})
-               
+          
