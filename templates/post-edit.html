@@ -5,9 +5,6 @@
     <div class="d-flex my-5 row align-items-center justify-content-center">
         <form class="posts col-md-8 col-sm-10" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <div class="mt-2 d-flex flex-row-reverse delete-button">
-                <a href="{% url 'post_delete' post.id %}" class="fa-solid fa-trash fa-2x"></a>
-            </div>
             <div class=" mb-2" >
                 <div class="col-auto mt-1`">
                     <div class="col-12 px-2">
@@ -32,16 +29,23 @@
                                     {% endfor %}
                                 {% endif %}
                             </div>
-                            <div class=" container-fluid">
+                            <div class="container-fluid postedit-buttons">
                                 <div class="text-center">
-                                    <a href="{% url 'posts' %}">
-                                        <button type="button" class="btn btn-secondary mb-4 col-5">
-                                            Cancel
+                                    <div class="">
+                                        <a href="{% url 'posts' %}">
+                                            <button type="button" class="btn btn-secondary btn-block mx-1 mb-4 col-3">
+                                                Cancel
+                                            </button>
+                                        </a>
+                                        <button type="submit" class="btn btn-primary btn-block mx-1 mb-4 col-3">
+                                            Save
                                         </button>
-                                    </a>
-                                    <button type="submit" class="btn btn-primary mb-4 col-5">
-                                        Save Changes
-                                    </button>
+                                        <a href="{% url 'post_delete' post.id %}">
+                                            <button type="button" class="btn btn-danger btn-block mx-1 mb-4 col-3">
+                                                Delete
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

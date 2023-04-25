@@ -4,10 +4,9 @@ from .models import Post
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .forms import PostForm
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
-# Create your views here.
 class PostListView(LoginRequiredMixin, ListView): 
     model = Post
     template_name = 'main.html'
@@ -20,7 +19,7 @@ class PostListView(LoginRequiredMixin, ListView):
         return data
     
       
-class PostEditView(LoginRequiredMixin, UpdateView):
+class PostEditView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Post
     template_name = 'post-edit.html'
     context_object_name = 'post'
@@ -32,20 +31,33 @@ class PostEditView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         id = self.kwargs.get('pk')
         return Post.objects.get(id=id)
- 
-         
+             
     def form_valid(self, form):
         mypost = form.save(commit=False)
         mypost.owner = self.request.user
         response = super().form_valid(form)
         return response
+    
+    def test_func(self):
+        post = self.get_object()
+        return post.owner == self.request.user
+    
+    def handle_no_permission(self):
+        return render(self.request, '404.html', status=404)
 
 
-class PostDeleteView(LoginRequiredMixin, DeleteView):
+class PostDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Post
     template_name = 'post-delete.html'
     success_url = reverse_lazy('posts')
     login_url = reverse_lazy('login')
+
+    def test_func(self):
+        post = self.get_object()
+        return post.owner == self.request.user
+    
+    def handle_no_permission(self):
+        return render(self.request, '404.html', status=404)
 
         
 class PostCreateview(LoginRequiredMixin, CreateView):
