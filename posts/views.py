@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from profiles.models import User
 from .models import Post
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -44,7 +44,7 @@ class PostEditView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     
     def handle_no_permission(self):
         return render(self.request, '404.html', status=404)
-
+    
 
 class PostDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Post

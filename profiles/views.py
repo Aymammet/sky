@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404 
 from django.views.generic import DetailView, UpdateView
 from .models import User
 from posts.models import Post
 from django.urls import reverse_lazy, reverse
 from django.utils.dateformat import DateFormat
 from django.http import Http404
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 
 
 def error_404(request, exception):
@@ -22,23 +22,23 @@ class UserDetailView(DetailView):
         return context
 
 
-class UserUpdateView(UserPassesTestMixin, UpdateView):
+class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     fields = ['profile_image','first_name', 'last_name', 'gender', 'profession', 'bio', 'birth_date', ]
     template_name = 'profile-edit.html'
     success_url = reverse_lazy('profile-edit.html')
 
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user != self.get_object():
+            return redirect(reverse('profile-edit', kwargs={'pk': self.request.user.pk}))
+        return super().dispatch(request, *args, **kwargs)
 
     def get_object(self, queryset=None):
-        id = self.kwargs.get('pk')
-        return User.objects.get(id=id)
-    
-    def test_func(self):
-        return self.get_object().id == self.request.user.id
-    
-    def handle_no_permission(self):
-        return render(self.request, '404.html', status=404)
-    
+        pk = self.kwargs.get('pk')
+        obj = get_object_or_404(User, pk=pk)
+        return obj
+
+        
     def form_valid(self, form):
         user = form.save(commit=False)
         if user == self.request.user:
