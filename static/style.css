@@ -88,3 +88,7 @@ a {
     box-shadow: 0 4px 6px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     font-size: large;
 }
+
+.my-input::placeholder {
+    font-style: italic;
+  }
