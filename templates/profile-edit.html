@@ -33,12 +33,12 @@
                                 <label class="small mb-1" for="inputUsername">First name</label>
                                 <div class="form-outline mb-3 input-group flex-nowrap">
                                     <span class="input-group-text fa-solid fa-user-tie fs-5" id="addon-wrapping"></span>
-                                    <input type="text" name="first_name" class="form-control my-input" placeholder="Firstname" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ form.first_name.value }}">
+                                    <input type="text" name="first_name" class="form-control profile-edit-input" placeholder="Firstname" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ form.first_name.value }}">
                                 </div>
                                 <label class="small mb-1" for="inputUsername">Last name</label>
                                 <div class="form-outline mb-2 input-group flex-nowrap">
                                     <span class="input-group-text fa-solid fa-user-tie fs-5" id="addon-wrapping"></span>
-                                    <input type="text" name="last_name"  class="form-control my-input" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" value="{{ form.last_name.value }}">
+                                    <input type="text" name="last_name"  class="form-control profile-edit-input" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" value="{{ form.last_name.value }}">
                                 </div>
                             </div>
                             <label class="small mb-1" for="inputGender">Gender</label>
@@ -55,7 +55,7 @@
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputOrgName">Occupation</label>
-                                    <input class="form-control my-input {% if form.profession.errors %}is-invalid{% endif %}" id="inputOrgName" type="text" name="profession" placeholder="Occupation" value="{{ form.profession.value }}">
+                                    <input class="form-control profile-edit-input {% if form.profession.errors %}is-invalid{% endif %}" id="inputOrgName" type="text" name="profession" placeholder="Occupation" value="{{ form.profession.value }}">
                                     {% if form.profession.errors %}
                                         <div class="invalid-feedback">
                                             {% for error in form.profession.errors %}
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputLocation">Status</label>
-                                    <input class="form-control my-input" id="inputLocation" name="bio" type="text" placeholder="Enter your Bio" value="{{ form.bio.value }}">
+                                    <input class="form-control profile-edit-input" id="inputLocation" name="bio" type="text" placeholder="Enter your Bio" value="{{ form.bio.value }}">
                                 </div>
                             </div>
                             <label class="small mb-1" for="inputBirthDate">Birth Date</label>

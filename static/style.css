@@ -89,6 +89,6 @@ a {
     font-size: large;
 }
 
-.my-input::placeholder {
+.profile-edit-input::placeholder {
     font-style: italic;
   }
