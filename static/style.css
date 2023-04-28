@@ -80,11 +80,13 @@ a {
 }
 
 .error-page {
-    padding: 20px;
+    padding: 40px;
     border-radius: 5px;
+    
 }
 
-.page404 {
+.border404 {
     box-shadow: 0 4px 6px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-    font-size: large;
+
 }
+
