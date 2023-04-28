@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.http import Http404
+from django.core.exceptions import ObjectDoesNotExist
 from profiles.models import User
 from .models import Post
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -29,8 +31,12 @@ class PostEditView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     login_url = reverse_lazy('login')
 
     def get_object(self, queryset=None):
-        id = self.kwargs.get('pk')
-        return Post.objects.get(id=id)
+        try:
+            id = self.kwargs.get('pk')
+            post = Post.objects.get(id=id)
+        except ObjectDoesNotExist:
+            post = None
+        return post
              
     def form_valid(self, form):
         mypost = form.save(commit=False)
@@ -40,11 +46,11 @@ class PostEditView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     
     def test_func(self):
         post = self.get_object()
-        return post.owner == self.request.user
+        return post and post.owner == self.request.user
     
     def handle_no_permission(self):
         return render(self.request, '404.html', status=404)
-    
+
 
 class PostDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Post
@@ -52,9 +58,24 @@ class PostDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('posts')
     login_url = reverse_lazy('login')
 
+
+    def get_object(self, queryset=None):
+        try:
+            obj = super().get_object(queryset)
+        except Http404:
+            obj = None
+        return obj
+    
     def test_func(self):
         post = self.get_object()
-        return post.owner == self.request.user
+        return post and post.owner == self.request.user
+    
+    def delete(self, request, *args, **kwargs):
+        post = self.get_object()
+        if post is not None:
+            return super().delete(request, *args, **kwargs)
+        else:
+            return render(request, '404.html', status=404)
     
     def handle_no_permission(self):
         return render(self.request, '404.html', status=404)

@@ -5,7 +5,7 @@ from posts.models import Post
 from django.urls import reverse_lazy, reverse
 from django.utils.dateformat import DateFormat
 from django.http import Http404
-from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def error_404(request, exception):
@@ -38,7 +38,6 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         obj = get_object_or_404(User, pk=pk)
         return obj
 
-        
     def form_valid(self, form):
         user = form.save(commit=False)
         if user == self.request.user:
