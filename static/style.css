@@ -90,3 +90,6 @@ a {
 
 }
 
+.profile-edit-input::placeholder {
+    font-style: italic;
+  }

@@ -9,7 +9,7 @@
                     <div class="card mb-4 mb-xl-0 ">
                         <div class="card-header">Profile Picture</div>
                         <div class="card-body text-center">
-                            <img class="img-account-profile rounded-circle mb-2" id="profile-image" src="{{ user.profile_image.url }}" width="220cm">
+                            <img class="img-account-profile rounded-circle mb-2" id="profile-image" src="{{ user.profile_image.url }}" height="150cm" width="150cm">
                             <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                             <div class="mb-3">
                                 <label for="profile-file" class="form-label"></label>
@@ -33,12 +33,12 @@
                                 <label class="small mb-1" for="inputUsername">First name</label>
                                 <div class="form-outline mb-3 input-group flex-nowrap">
                                     <span class="input-group-text fa-solid fa-user-tie fs-5" id="addon-wrapping"></span>
-                                    <input type="text" name="first_name" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ form.first_name.value }}">
+                                    <input type="text" name="first_name" class="form-control profile-edit-input" placeholder="Firstname" aria-label="Firstname" aria-describedby="addon-wrapping" value="{{ form.first_name.value }}">
                                 </div>
                                 <label class="small mb-1" for="inputUsername">Last name</label>
                                 <div class="form-outline mb-2 input-group flex-nowrap">
                                     <span class="input-group-text fa-solid fa-user-tie fs-5" id="addon-wrapping"></span>
-                                    <input type="text" name="last_name"  class="form-control" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" value="{{ form.last_name.value }}">
+                                    <input type="text" name="last_name"  class="form-control profile-edit-input" placeholder="Lastname" aria-label="Lastname" aria-describedby="addon-wrapping" value="{{ form.last_name.value }}">
                                 </div>
                             </div>
                             <label class="small mb-1" for="inputGender">Gender</label>
@@ -52,25 +52,34 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="row gx-3 mb-3">
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputOrgName">Occupation</label>
-                                    <input class="form-control" id="inputOrgName" type="text" name="profession" placeholder="Occupation" value="{{ form.profession.value }}">
+                                    <input class="form-control profile-edit-input {% if form.profession.errors %}is-invalid{% endif %}" id="inputOrgName" type="text" name="profession" placeholder="Occupation" value="{{ form.profession.value }}">
+                                    {% if form.profession.errors %}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.profession.errors %}
+                                                <span>{{ error }}</span>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputLocation">Status</label>
-                                    <input class="form-control" id="inputLocation" name="bio" type="text" placeholder="Enter your Bio" value="{{ form.bio.value }}">
+                                    <input class="form-control profile-edit-input" id="inputLocation" name="bio" type="text" placeholder="Enter your Bio" value="{{ form.bio.value }}">
                                 </div>
                             </div>
                             <label class="small mb-1" for="inputBirthDate">Birth Date</label>
                             <div class="col-md-6">
-                                <div class="form-outline mb-4 input-group flex-nowrap">
+                                <div class="form-outline mb-2 input-group flex-nowrap">
                                     <span class="input-group-text fa-regular fa-calendar-days fs-5" id="addon-wrapping"></span>
                                     <input type="date" name="birth_date" class="form-control" id="inputBirthDate"  aria-label="Date" aria-describedby="addon-wrapping" value="{{ object.birth_date|default_if_none:''|date:'Y-m-d' }}">
                                 </div>
+                                {% for error in form.birth_date.errors %}
+                                    <span class="text-danger">{{ error }}</span>
+                                {% endfor %}
                             </div>
-                            <div class="">
+                            <div class="mt-4">
                                 <a href="{% url 'profile' user.id %}" class="btn btn-primary mx-1">
                                     Profile
                                 </a>
