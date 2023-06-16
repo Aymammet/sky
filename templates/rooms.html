@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="container p-4 text-center my-5 d-flex">
+        <div class="col-4">
+            <p>
+                <a id="5">Anar</a>
+            </p>
+        </div>
+        <div class="col-8">
+            blank
+        </div>
+    </div>
+    <script>
+        addEventListener("DOMContentLoaded", (event) => {
+            var anar = document.getElementById('5')
+            var body = document.getElementsByTagName('body')
+            console.log(body)
+            anar.addEventListener("click", function() {
+                if (anar.innerHTML == 'hi') {
+                    anar.innerHTML = 'anar';
+                    body[0].classList.add("bg-primary");
+                    body[0].classList.remove("bg-danger");
+                    var new_element = document.createElement('p')
+                    new_element.innerHTML = 'hello';
+                    anar.appendChild(new_element)
+                    
+                    
+                }
+                else {
+                    anar.innerHTML = 'hi';
+                    body[0].classList.add("bg-danger");
+                    body[0].classList.remove("bg-primary");
+                }
+                
+            })
+            
+        });
+    </script>
+{% endblock content %}
