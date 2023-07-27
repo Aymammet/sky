@@ -1,40 +1,100 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <div class="container p-4 text-center my-5 d-flex">
+    <div id="{{user.pk}}" class="container p-4 text-center my-5 d-flex">
         <div class="col-4">
-            <p>
-                <a id="5">Anar</a>
+            <p class="message-friends">
+                <a class="message-friend-username" id="3">Anar</a>
+            </p>
+            <p class="message-friends">
+                <a class="message-friend-username" id="4">Mammet</a>
+            </p>
+            <p class="message-friends">
+                <a class="message-friend-username" id="5">Albert</a>
+            </p>
+            <p class="message-friends">
+                <a class="message-friend-username" id="6">Vasya</a>
+            </p>
+            <p class="message-friends">
+                <a class="message-friend-username" id="1">Admin</a>
             </p>
         </div>
-        <div class="col-8">
-            blank
+        <div style="background-color: burlywood;" id="message-area" class="col-8">
+            <p id="message-field">
+                
+            </p>
         </div>
+        <br>
+
     </div>
+
+        <input id="message-content" type="text">
+        <button id="send-button">Send message</button>
+
     <script>
         addEventListener("DOMContentLoaded", (event) => {
-            var anar = document.getElementById('5')
-            var body = document.getElementsByTagName('body')
-            console.log(body)
-            anar.addEventListener("click", function() {
-                if (anar.innerHTML == 'hi') {
-                    anar.innerHTML = 'anar';
-                    body[0].classList.add("bg-primary");
-                    body[0].classList.remove("bg-danger");
-                    var new_element = document.createElement('p')
-                    new_element.innerHTML = 'hello';
-                    anar.appendChild(new_element)
-                    
-                    
+            var container = document.getElementsByClassName('container')
+            var sender_id = container[0].id
+            var message_friends = document.getElementsByClassName('message-friends')
+
+            function displayMessages(messages){
+                var message_field = document.getElementById('message-field')
+                // console.log(messages)
+                // console.log(messages.length)
+                for (i = 0; i < messages.length; i++){
+                    console.log(messages[i])
+                    p = document.createElement('p')
+                    p.innerHTML = messages[i].content
+                    message_field.appendChild(p)
                 }
-                else {
-                    anar.innerHTML = 'hi';
-                    body[0].classList.add("bg-danger");
-                    body[0].classList.remove("bg-primary");
-                }
-                
+                // message_field.innerHTML = messages
+            }
+
+            for (i = 0; i < message_friends.length; i++){
+                message_friends[i].addEventListener("click", function(){
+                    var message_sender_id = document.getElementById('message-sender-id')
+                    var message_friend_username = this.getElementsByClassName("message-friend-username")
+                    var receiver_id = message_friend_username[0].id
+                    url = "http://127.0.0.1:8000/message/rooms/?receiver=" + receiver_id
+
+                    fetch(url, {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // console.log(data['messages'])
+                        displayMessages(data['messages'])
+                    })
+            })}
+
+                var send_button = document.getElementById('send-button');
+                var message_content = document.getElementById('message-content');
+
+                send_button.addEventListener("click", function(){
+                    var message = message_content.value
+                    console.log(message)
+                    fetch('create/', {
+                        method: 'POST',
+                        credentials: 'same-origin',
+                        body: JSON.stringify({
+                            content: message,
+                            receiver_id: 3,
+                        }),
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{csrf_token}}',
+                        },                            
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        message_content.value = '';
+                        console.log(data)
+                    })
+                })
             })
-            
-        });
+
     </script>
 {% endblock content %}
