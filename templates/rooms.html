@@ -19,7 +19,7 @@
                 <a class="message-friend-username" id="1">Admin</a>
             </p>
         </div>
-        <div style="background-color: burlywood;" id="message-area" class="col-8">
+        <div style="background-color: burlywood;" class="col-8 message-area">
             <p id="message-field">
                 
             </p>
@@ -39,6 +39,7 @@
 
             function displayMessages(messages){
                 var message_field = document.getElementById('message-field')
+                message_field.innerHTML = " "
                 // console.log(messages)
                 // console.log(messages.length)
                 for (i = 0; i < messages.length; i++){
@@ -55,6 +56,11 @@
                     var message_sender_id = document.getElementById('message-sender-id')
                     var message_friend_username = this.getElementsByClassName("message-friend-username")
                     var receiver_id = message_friend_username[0].id
+                    var orange_field = document.querySelector('.message-area')
+                    orange_field.id = receiver_id
+                    console.log('b')
+                    console.log(orange_field)
+                     
                     url = "http://127.0.0.1:8000/message/rooms/?receiver=" + receiver_id
 
                     fetch(url, {
@@ -69,19 +75,23 @@
                         displayMessages(data['messages'])
                     })
             })}
-
+            
                 var send_button = document.getElementById('send-button');
                 var message_content = document.getElementById('message-content');
 
                 send_button.addEventListener("click", function(){
                     var message = message_content.value
+                    var orange_field = document.querySelector('.message-area')
+                    var rec_id = orange_field.id
                     console.log(message)
+                    
+
                     fetch('create/', {
                         method: 'POST',
                         credentials: 'same-origin',
                         body: JSON.stringify({
                             content: message,
-                            receiver_id: 3,
+                            receiver_id: rec_id,
                         }),
                         headers: {
                             'Content-Type': 'application/json',
@@ -91,7 +101,7 @@
                     .then(response => response.json())
                     .then(data => {
                         message_content.value = '';
-                        console.log(data)
+                        displayMessages(data['messages'])
                     })
                 })
             })
