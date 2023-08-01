@@ -93,3 +93,28 @@ a {
 .profile-edit-input::placeholder {
     font-style: italic;
   }
+
+  .friend-list p {
+    cursor: pointer;
+  }
+
+  .friend-list:hover {
+    background-color: rgb(36, 170, 70);
+    
+  }
+  .message-sender {
+    text-align: right;
+    background-color: #0d6efd;
+    width: 50%;
+    border-radius: 10px;
+    padding: 5px;
+    color: black;
+    
+  }
+  .message-receiver {
+    text-align: left;
+    color: rgb(0, 0, 0);
+    /* width: 50%; */
+    border-radius: 10px;
+    padding: 5px;
+  }

@@ -1,10 +1,46 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-    <div id="{{user.pk}}" class="container p-4 text-center my-5 d-flex">
-        <div class="col-4">
+    <div id="{{user.pk}}" style="width: 70%;" class="container p-4 text-center my-5 d-flex">
+        <div class="col-3 friend-list" style="background-color: rgb(226, 226, 226);">
+            <p style="background-color: rgb(241, 119, 119); border-radius: 5px; height: 40px; align-items: center; display: flex; justify-content: center;" class="message-friends">
+                <a style="font-weight: bold;" class="message-friend-username" id="2">Anar</a>
+            </p>
+            <p style="background-color: rgb(241, 119, 119); border-radius: 5px; height: 40px; align-items: center; display: flex; justify-content: center;" class="message-friends">
+                <a style="font-weight: bold;" class="message-friend-username" id="1">Admin</a>
+            </p>
+            <p style="background-color: rgb(241, 119, 119); border-radius: 5px; height: 40px; align-items: center; display: flex; justify-content: center;" class="message-friends">
+                <a style="font-weight: bold;" class="message-friend-username" id="4">Mamet</a>
+            </p>
+            <p style="background-color: rgb(241, 119, 119); border-radius: 5px; height: 40px; align-items: center; display: flex; justify-content: center;" class="message-friends">
+                <a style="font-weight: bold;" class="message-friend-username" id="2">Anar</a>
+            </p>
+            <p style="background-color: rgb(241, 119, 119); border-radius: 5px; height: 40px; align-items: center; display: flex; justify-content: center;" class="message-friends">
+                <a style="font-weight: bold;" class="message-friend-username" id="3">Samir</a>
+            </p>
+            <p style="background-color: rgb(241, 119, 119); border-radius: 5px; height: 40px; align-items: center; display: flex; justify-content: center;" class="message-friends">
+                <a style="font-weight: bold;" class="message-friend-username" id="4">Mamet</a>
+            </p>
+
+        </div>
+
+        <div class="col-9" style="background-color: white; display: flex; flex-direction: column;  ">
+            <div class="message-area" style="height: 85%;" >
+                <div style=" margin: 10px; word-break: break-all;" id="message-field">
+                </div>  
+            </div>
+            <div style="height: 50px; background-color: cadetblue; max-height: 100px; display: flex; justify-content: flex-end; ">
+                <input style="width: 80%; border-radius: 5px;" id="message-content" type="text" placeholder="your message">
+                <button style="width: 20%;" id="send-button">Send</button>
+            </div>
+        </div>
+        
+        
+        
+        
+        <!-- <div class="col-4">
             <p class="message-friends">
-                <a class="message-friend-username" id="3">Anar</a>
+                <a class="message-friend-username" id="2">Anar</a>
             </p>
             <p class="message-friends">
                 <a class="message-friend-username" id="4">Mammet</a>
@@ -18,18 +54,28 @@
             <p class="message-friends">
                 <a class="message-friend-username" id="1">Admin</a>
             </p>
-        </div>
-        <div style="background-color: burlywood;" class="col-8 message-area">
-            <p id="message-field">
-                
-            </p>
-        </div>
-        <br>
+        </div> -->
 
+
+
+
+        <!-- <div style="display: flex; flex-direction: column;">
+            <div style="background-color: burlywood;" class="col-8 message-area">
+                <div class="m-filed">
+                    <p id="message-field">
+                    
+                    </p>
+                </div>                
+            </div>
+            <div>
+                
+            </div>
+        </div> -->
+      
+     
     </div>
 
-        <input id="message-content" type="text">
-        <button id="send-button">Send message</button>
+       
 
     <script>
         addEventListener("DOMContentLoaded", (event) => {
@@ -39,12 +85,20 @@
 
             function displayMessages(messages){
                 var message_field = document.getElementById('message-field')
+                var message_area = document.querySelector('.message-area')
+                var area_id = message_area.id
                 message_field.innerHTML = " "
-                // console.log(messages)
-                // console.log(messages.length)
                 for (i = 0; i < messages.length; i++){
-                    console.log(messages[i])
                     p = document.createElement('p')
+                    if (messages[i].sender == area_id ) {
+                        p.classList.add('message-receiver')
+                       
+
+                    }
+                    else {
+                        p.classList.add('message-sender')
+                    }
+                    
                     p.innerHTML = messages[i].content
                     message_field.appendChild(p)
                 }
@@ -58,8 +112,7 @@
                     var receiver_id = message_friend_username[0].id
                     var orange_field = document.querySelector('.message-area')
                     orange_field.id = receiver_id
-                    console.log('b')
-                    console.log(orange_field)
+                
                      
                     url = "http://127.0.0.1:8000/message/rooms/?receiver=" + receiver_id
 
@@ -71,7 +124,6 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        // console.log(data['messages'])
                         displayMessages(data['messages'])
                     })
             })}
@@ -83,8 +135,6 @@
                     var message = message_content.value
                     var orange_field = document.querySelector('.message-area')
                     var rec_id = orange_field.id
-                    console.log(message)
-                    
 
                     fetch('create/', {
                         method: 'POST',
