@@ -24,9 +24,9 @@
 
         </div>
 
-        <div class="col-9" style="background-color: white; display: flex; flex-direction: column;  ">
-            <div class="message-area" style="height: 85%;" >
-                <div style=" margin: 10px; word-break: break-all;" id="message-field">
+        <div id="message-display-area" class="col-9" style=" height: 700px;">
+            <div class="message-area" style=" height: 650px;" >
+                <div style=" margin: 10px; word-break: break-all;  height: 600px;" id="message-field" >
                 </div>  
             </div>
             <div style="height: 50px; background-color: cadetblue; max-height: 100px; display: flex; justify-content: flex-end; ">
@@ -89,18 +89,29 @@
                 var area_id = message_area.id
                 message_field.innerHTML = " "
                 for (i = 0; i < messages.length; i++){
+                    div = document.createElement('div')
                     p = document.createElement('p')
+                    div.appendChild(p);
+                    p.style.maxWidth = '50%'
+                    p.style.borderRadius = '5px'
+                    p.style.padding = '5px'
+                    
+                    
                     if (messages[i].sender == area_id ) {
-                        p.classList.add('message-receiver')
-                       
-
+                        div.classList.add('message-receiver')
+                        p.style.textAlign = 'left'
+                        p.style.backgroundColor = 'rgb(200,200,200)'
                     }
                     else {
-                        p.classList.add('message-sender')
+                        div.classList.add('message-sender')
+                        p.style.textAlign = 'right'
+                        p.style.backgroundColor = 'rgb(90,135,231)'
+                        
+
                     }
                     
                     p.innerHTML = messages[i].content
-                    message_field.appendChild(p)
+                    message_field.appendChild(div)
                 }
                 // message_field.innerHTML = messages
             }
