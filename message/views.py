@@ -31,7 +31,7 @@ class MessageRoomView(ListView):
             room = Room.objects.create(room_id = current_room_id)
             room.save()
         all_messages = Message.objects.filter(room_id = room)
-        messages = list(all_messages.values('content','date'))
+        messages = list(all_messages.values('content','date', 'sender', 'receiver'))
         return JsonResponse({"messages": messages })
     
 
@@ -39,8 +39,6 @@ class MessageCreateView(CreateView):
 
     def post(self, request):
         body = json.loads(request.body)
-        print(request.user.pk)
-        print(body['receiver_id'])
         new_room_id = get_room_id(request.user.pk, body['receiver_id'])
         if Room.objects.filter(room_id=new_room_id).exists():
             current_room = Room.objects.get(room_id=new_room_id)
@@ -56,5 +54,7 @@ class MessageCreateView(CreateView):
         )
         new_message.save()
         all_messages = Message.objects.filter(room_id = current_room)
-        messages = list(all_messages.values('content','date'))
+        messages = list(all_messages.values('content','date', 'sender', 'receiver'))
         return JsonResponse({"messages": messages })
+
+
